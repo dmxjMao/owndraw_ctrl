@@ -169,33 +169,18 @@ void Cowndraw_ctrlDlg::DrawTheMainDlg(/*CConfig* 配置信息*/)
 	LOGFONT lf;
 	memset(&lf, 0, sizeof(LOGFONT));
 	lf.lfHeight = 20; lf.lfUnderline = TRUE;
-	CFont* font = new CFont;
+	CFont* font = new CFont;//这个要处理
 	font->CreateFontIndirect(&lf);
 	m_static_1.SetFont(font);
 	m_static_1.SetWindowText(_T("maoyinan"));
-	m_static_1.SetWindowPos(0, 10, 10, 100, 50, SWP_NOZORDER);
+	//m_static_1.SetWindowPos(0, 10, 10, 100, 50, SWP_NOZORDER);
+	SET_CTL_LOC_ABSOLUTE(ID_MY_STATIC_1, FALSE, 10, 10, 100, 50);
 
 	//button
-	//GetDlgItem(IDCANCEL)->SetWindowPos(0, m_curSize.cx - 100, m_curSize.cy - 100, 100, 80, SWP_NOZORDER);
-	//GetDlgItem(IDOK)->SetWindowPos(0, m_curSize.cx - 200, m_curSize.cy - 100, 100, 80, SWP_NOZORDER);
-	//GetDlgItem(IDCANCEL)->MoveWindow(m_curSize.cx - 100, m_curSize.cy - 100, 100, 80);
-	//GetDlgItem(IDOK)->MoveWindow(m_curSize.cx - 200, m_curSize.cy - 100, 100, 80);
-	SET_CTL_LOC_ABSOLUTE(IDCANCEL, 1, m_curSize.cx - CANCEL_BTN_RIGHT_MARGIN - OK_BTN_WIDTH, m_curSize.cy - CANCEL_BTN_BOTTOM_MARGIN - CANCEL_BTN_HEIGHT, CANCEL_BTN_WIDTH, CANCEL_BTN_HEIGHT);
-	SET_CTL_LOC_ABSOLUTE(IDOK, 1, m_curSize.cx - OK_AND_CANCEL_MARGIN - OK_BTN_WIDTH, m_curSize.cy - CANCEL_BTN_BOTTOM_MARGIN - OK_BTN_HEIGHT, OK_BTN_WIDTH, OK_BTN_HEIGHT);
-	//SET_CTL_LOC_ABSOLUTE(IDOK, IDCANCEL, -OK_AND_CANCEL_MARGIN - OK_BTN_WIDTH, rc.top, OK_BTN_WIDTH, OK_BTN_HEIGHT)
-	
-	RECT rc; 
-	GetDlgItem(IDCANCEL)->GetWindowRect(&rc); 
-	ScreenToClient(&rc); 
-	//if (b) {	
-		RECT rc2; 
-		GetDlgItem(IDOK)->GetClientRect(&rc2);//
-		//ScreenToClient(&rc2);
-		SET_CTL_LOC_ABSOLUTE(IDOK, 1, rc.left - OK_AND_CANCEL_MARGIN - rc2.right, rc.top, rc2.right, rc2.bottom);
-	//}
-	//else {		
-	//	SET_CTL_LOC_ABSOLUTE(id, rc.left + offx, rc.top + offy, cx, cy); 
-	//}
+	SET_CTL_LOC_ABSOLUTE(IDCANCEL, TRUE, m_curSize.cx - CANCEL_BTN_RIGHT_MARGIN - OK_BTN_WIDTH, 
+		m_curSize.cy - CANCEL_BTN_BOTTOM_MARGIN - CANCEL_BTN_HEIGHT, CANCEL_BTN_WIDTH, CANCEL_BTN_HEIGHT);
+
+	SET_CTL_LOC_RELATIVE(IDOK, IDCANCEL, TRUE, -OK_AND_CANCEL_MARGIN - OK_BTN_WIDTH, 0, OK_BTN_WIDTH, OK_BTN_HEIGHT);
 }
 
 
@@ -219,5 +204,8 @@ void Cowndraw_ctrlDlg::OnSize(UINT nType, int cx, int cy)
 	m_curSize.cx = cx; m_curSize.cy = cy;
 
 	//适应控件布局
+	SET_CTL_LOC_ABSOLUTE(IDCANCEL, TRUE, m_curSize.cx - CANCEL_BTN_RIGHT_MARGIN - OK_BTN_WIDTH,
+		m_curSize.cy - CANCEL_BTN_BOTTOM_MARGIN - CANCEL_BTN_HEIGHT, CANCEL_BTN_WIDTH, CANCEL_BTN_HEIGHT);
 
+	SET_CTL_LOC_RELATIVE(IDOK, IDCANCEL, TRUE, -OK_AND_CANCEL_MARGIN - OK_BTN_WIDTH, 0, OK_BTN_WIDTH, OK_BTN_HEIGHT);
 }
