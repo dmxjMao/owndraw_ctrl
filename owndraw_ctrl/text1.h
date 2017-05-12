@@ -1,14 +1,32 @@
 #pragma once
+#include <string>
+#include <memory>
 
-
-class COwnDrawCtrl_CStatic_Text1 : public CStatic
+class CMyStatic1 : public CStatic
 {
+	//方法
 public:
-	COwnDrawCtrl_CStatic_Text1(const LOGFONT& lf);
-	COwnDrawCtrl_CStatic_Text1(){}
+	CMyStatic1();
+	bool Init();
+	
+	CMyStatic1& operator & (const std::string& s);
 
-	inline void SetFont(const LOGFONT& lf) { m_font.CreateFontIndirect(&lf); }
+
+	DECLARE_MESSAGE_MAP()
+	afx_msg void OnPaint();
+protected:
+
+private:
+
+
+	//属性
+public:
 
 protected:
-	CFont				m_font;
+	CFont				m_font;//字体
+	COLORREF			m_colorBG;//控件背景颜色				
+	COLORREF			m_colorText;//文字颜色
+
+private:
+	std::shared_ptr<std::string>			m_uicfg;//ui配置
 };

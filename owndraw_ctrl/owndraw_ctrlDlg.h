@@ -3,6 +3,9 @@
 //
 
 #pragma once
+#include "afxwin.h"
+//#include <memory>
+#include "text1.h"
 
 class COwnDrawCtrl_CStatic_Text1;
 
@@ -18,14 +21,15 @@ public:
 	enum { IDD = IDD_OWNDRAW_CTRL_DIALOG };
 #endif
 
-	protected:
+protected:
 	virtual void DoDataExchange(CDataExchange* pDX);	// DDX/DDV support
+	bool Init();
 
 
 // Implementation
 protected:
 	HICON m_hIcon;
-	CStatic				m_static_1;
+	//CStatic				m_static_1;
 
 private:
 	LONG				DLG_CLIENT_X;//当前客户区大小
@@ -43,6 +47,8 @@ private:
 	//绘制主界面
 	void DrawTheMainDlg(/*CConfig* 配置信息*/);
 public:
-	//afx_msg void OnGetMinMaxInfo(MINMAXINFO* lpMMI);
-	//afx_msg void OnSize(UINT nType, int cx, int cy);
+
+	afx_msg void OnStnClickedStatic1();
+protected:
+	CMyStatic1 m_static1;
 };

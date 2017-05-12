@@ -11,7 +11,7 @@
 {\
 	CWnd* pWnd = GetDlgItem(id);\
 	if(pWnd){\
-		pWnd->SetWindowPos(0, x, y, cx, cy, SWP_NOZORDER);\
+		pWnd->SetWindowPos(0, x, y, cx, cy, SWP_NOZORDER | SWP_NOREDRAW);\
 	}\
 }
 
@@ -23,6 +23,6 @@
 		RECT rc;\
 		GetDlgItem(idrel)->GetWindowRect(&rc);\
 		ScreenToClient(&rc);\
-		pWnd->SetWindowPos(0, rc.left + offx, rc.top + offy, cx, cy, SWP_NOZORDER);\
+		pWnd->SetWindowPos(0, rc.left + offx, rc.top + offy, cx, cy, SWP_NOZORDER | SWP_NOREDRAW);\
 	}\
 }

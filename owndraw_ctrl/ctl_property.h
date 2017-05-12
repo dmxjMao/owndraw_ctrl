@@ -6,12 +6,9 @@
 #define DLG_SIZE_CX					640
 #define DLG_SIZE_CY					480
 
-//static1的id
-#define ID_MY_STATIC				1
-#define ID_MY_STATIC_1				ID_MY_STATIC + 1
 //static1的大小
 #define ID_MY_STATIC_WIDTH			DLG_SIZE_CX
-#define ID_MY_STATIC_HEIGHT			20
+#define ID_MY_STATIC_HEIGHT			30
 
 
 //ok,cancel按钮大小
@@ -24,4 +21,10 @@
 #define CANCEL_BTN_BOTTOM_MARGIN			10
 //ok和cancel按钮间距
 #define OK_AND_CANCEL_MARGIN				10
+
+
+
+//颜色
+#define COLOR_LIGHT_BLUE					RGB(49,113,170)
+#define COLOR_WHITE							RGB(255,255,255)
 
