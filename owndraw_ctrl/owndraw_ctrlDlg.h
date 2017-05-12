@@ -28,7 +28,8 @@ protected:
 	CStatic				m_static_1;
 
 private:
-	SIZE				m_curSize;//当前客户区大小
+	LONG				DLG_CLIENT_X;//当前客户区大小
+	LONG				DLG_CLIENT_Y;
 
 	// Generated message map functions
 	virtual BOOL OnInitDialog();
@@ -42,6 +43,6 @@ private:
 	//绘制主界面
 	void DrawTheMainDlg(/*CConfig* 配置信息*/);
 public:
-	afx_msg void OnGetMinMaxInfo(MINMAXINFO* lpMMI);
-	afx_msg void OnSize(UINT nType, int cx, int cy);
+	//afx_msg void OnGetMinMaxInfo(MINMAXINFO* lpMMI);
+	//afx_msg void OnSize(UINT nType, int cx, int cy);
 };

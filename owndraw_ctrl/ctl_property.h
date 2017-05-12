@@ -2,10 +2,16 @@
 
 /*控件属性*/
 
+//对话框大小
+#define DLG_SIZE_CX					640
+#define DLG_SIZE_CY					480
+
 //static1的id
 #define ID_MY_STATIC				1
 #define ID_MY_STATIC_1				ID_MY_STATIC + 1
-
+//static1的大小
+#define ID_MY_STATIC_WIDTH			DLG_SIZE_CX
+#define ID_MY_STATIC_HEIGHT			20
 
 
 //ok,cancel按钮大小

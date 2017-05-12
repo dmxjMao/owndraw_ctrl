@@ -66,8 +66,8 @@ BEGIN_MESSAGE_MAP(Cowndraw_ctrlDlg, CDialogEx)
 	ON_WM_SYSCOMMAND()
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
-	ON_WM_GETMINMAXINFO()
-	ON_WM_SIZE()
+	//ON_WM_GETMINMAXINFO()
+	//ON_WM_SIZE()
 END_MESSAGE_MAP()
 
 
@@ -103,7 +103,12 @@ BOOL Cowndraw_ctrlDlg::OnInitDialog()
 	SetIcon(m_hIcon, FALSE);		// Set small icon
 
 	// TODO: Add extra initialization here
-	SetWindowPos(NULL, 0, 0, 640, 480, SWP_NOZORDER | SWP_NOMOVE);
+	SetWindowPos(NULL, 0, 0, DLG_SIZE_CX, DLG_SIZE_CY, SWP_NOZORDER | SWP_NOMOVE);
+	RECT rcClient;
+	GetClientRect(&rcClient);
+	DLG_CLIENT_X = rcClient.right - rcClient.left;
+	DLG_CLIENT_Y  = rcClient.bottom - rcClient.top;
+	ModifyStyle(WS_SIZEBOX,0);
 	DrawTheMainDlg();
 
 
@@ -165,47 +170,49 @@ void Cowndraw_ctrlDlg::DrawTheMainDlg(/*CConfig* 配置信息*/)
 
 	//static
 	m_static_1.Create(_T(""), WS_CHILD | WS_VISIBLE,
-		CRect(0,0,0,0), this, ID_MY_STATIC_1);
-	LOGFONT lf;
-	memset(&lf, 0, sizeof(LOGFONT));
-	lf.lfHeight = 20; lf.lfUnderline = TRUE;
-	CFont* font = new CFont;//这个要处理
-	font->CreateFontIndirect(&lf);
-	m_static_1.SetFont(font);
-	m_static_1.SetWindowText(_T("maoyinan"));
+		CRect(0,0, ID_MY_STATIC_WIDTH, ID_MY_STATIC_HEIGHT), this, ID_MY_STATIC_1);
+	//LOGFONT lf;
+	//memset(&lf, 0, sizeof(LOGFONT));
+	//lf.lfHeight = 20; lf.lfUnderline = TRUE;
+	//CFont* font = new CFont;//这个要处理
+	//font->CreateFontIndirect(&lf);
+	//m_static_1.SetFont(font);
+	m_static_1.SetWindowText(_T("abcmyn"));
 	//m_static_1.SetWindowPos(0, 10, 10, 100, 50, SWP_NOZORDER);
-	SET_CTL_LOC_ABSOLUTE(ID_MY_STATIC_1, FALSE, 10, 10, 100, 50);
+	//SET_CTL_LOC_ABSOLUTE(ID_MY_STATIC_1, 100, 100, ID_MY_STATIC_WIDTH, ID_MY_STATIC_HEIGHT);
 
 	//button
-	SET_CTL_LOC_ABSOLUTE(IDCANCEL, TRUE, m_curSize.cx - CANCEL_BTN_RIGHT_MARGIN - OK_BTN_WIDTH, 
-		m_curSize.cy - CANCEL_BTN_BOTTOM_MARGIN - CANCEL_BTN_HEIGHT, CANCEL_BTN_WIDTH, CANCEL_BTN_HEIGHT);
+	SET_CTL_LOC_ABSOLUTE(IDCANCEL, DLG_CLIENT_X - CANCEL_BTN_RIGHT_MARGIN - OK_BTN_WIDTH,
+		DLG_CLIENT_Y - CANCEL_BTN_BOTTOM_MARGIN - CANCEL_BTN_HEIGHT, CANCEL_BTN_WIDTH, CANCEL_BTN_HEIGHT);
 
-	SET_CTL_LOC_RELATIVE(IDOK, IDCANCEL, TRUE, -OK_AND_CANCEL_MARGIN - OK_BTN_WIDTH, 0, OK_BTN_WIDTH, OK_BTN_HEIGHT);
+	SET_CTL_LOC_RELATIVE(IDOK, IDCANCEL, -OK_AND_CANCEL_MARGIN - OK_BTN_WIDTH, 0, OK_BTN_WIDTH, OK_BTN_HEIGHT);
 }
 
 
-void Cowndraw_ctrlDlg::OnGetMinMaxInfo(MINMAXINFO* lpMMI)
-{
-	// TODO: Add your message handler code here and/or call default
-	if (lpMMI->ptMinTrackSize.x <= 500) lpMMI->ptMinTrackSize.x = 500;
-	if (lpMMI->ptMinTrackSize.y <= 300) lpMMI->ptMinTrackSize.y = 300;
-	if (lpMMI->ptMaxTrackSize.x >= 640) lpMMI->ptMaxTrackSize.x = 640;
-	if (lpMMI->ptMaxTrackSize.y >= 480) lpMMI->ptMaxTrackSize.y = 480;
+//void Cowndraw_ctrlDlg::OnGetMinMaxInfo(MINMAXINFO* lpMMI)
+//{
+//	// TODO: Add your message handler code here and/or call default
+//	if (lpMMI->ptMinTrackSize.x <= 500) lpMMI->ptMinTrackSize.x = 500;
+//	if (lpMMI->ptMinTrackSize.y <= 300) lpMMI->ptMinTrackSize.y = 300;
+//	if (lpMMI->ptMaxTrackSize.x >= 640) lpMMI->ptMaxTrackSize.x = 640;
+//	if (lpMMI->ptMaxTrackSize.y >= 480) lpMMI->ptMaxTrackSize.y = 480;
+//
+//	CDialogEx::OnGetMinMaxInfo(lpMMI);
+//}
 
-	CDialogEx::OnGetMinMaxInfo(lpMMI);
-}
 
-
-void Cowndraw_ctrlDlg::OnSize(UINT nType, int cx, int cy)
-{
-	CDialogEx::OnSize(nType, cx, cy);
-
-	// TODO: Add your message handler code here
-	m_curSize.cx = cx; m_curSize.cy = cy;
-
-	//适应控件布局
-	SET_CTL_LOC_ABSOLUTE(IDCANCEL, TRUE, m_curSize.cx - CANCEL_BTN_RIGHT_MARGIN - OK_BTN_WIDTH,
-		m_curSize.cy - CANCEL_BTN_BOTTOM_MARGIN - CANCEL_BTN_HEIGHT, CANCEL_BTN_WIDTH, CANCEL_BTN_HEIGHT);
-
-	SET_CTL_LOC_RELATIVE(IDOK, IDCANCEL, TRUE, -OK_AND_CANCEL_MARGIN - OK_BTN_WIDTH, 0, OK_BTN_WIDTH, OK_BTN_HEIGHT);
-}
+//void Cowndraw_ctrlDlg::OnSize(UINT nType, int cx, int cy)
+//{
+//	CDialogEx::OnSize(nType, cx, cy);
+//
+//	// TODO: Add your message handler code here
+//	m_curSize.cx = cx; m_curSize.cy = cy;
+//
+//	//适应控件布局
+//	//GetDlgItem(ID_MY_STATIC_1)->SetWindowPos(0, 10, 10, 100, 50, SWP_NOZORDER);
+//
+//	//SET_CTL_LOC_ABSOLUTE(IDCANCEL, TRUE, m_curSize.cx - CANCEL_BTN_RIGHT_MARGIN - OK_BTN_WIDTH,
+//	//	m_curSize.cy - CANCEL_BTN_BOTTOM_MARGIN - CANCEL_BTN_HEIGHT, CANCEL_BTN_WIDTH, CANCEL_BTN_HEIGHT);
+//
+//	//SET_CTL_LOC_RELATIVE(IDOK, IDCANCEL, TRUE, -OK_AND_CANCEL_MARGIN - OK_BTN_WIDTH, 0, OK_BTN_WIDTH, OK_BTN_HEIGHT);
+//}
