@@ -1,19 +1,15 @@
 #pragma once
-#include <string>
-#include <memory>
+#include "utility.h"
 
-class CMyStatic1 : public CStatic
+class CMyStatic1 : public CStatic, public CUICfg
 {
 	//方法
 public:
 	CMyStatic1();
 	bool Init();
 	
-	CMyStatic1& operator & (const std::string& s);
+	virtual CMyStatic1& operator & (const std::string& s);
 
-
-	DECLARE_MESSAGE_MAP()
-	afx_msg void OnPaint();
 protected:
 
 private:
@@ -24,9 +20,19 @@ public:
 
 protected:
 	CFont				m_font;//字体
-	COLORREF			m_colorBG;//控件背景颜色				
+	COLORREF			m_colorCtrlBG;//控件背景颜色				
 	COLORREF			m_colorText;//文字颜色
+	COLORREF			m_colorHightLight;//文本高亮颜色
 
 private:
-	std::shared_ptr<std::string>			m_uicfg;//ui配置
+	virtual bool regex_callback(const boost::smatch& what);//ui正则回调
+public:
+	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
+	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
+	afx_msg void OnLButtonUp(UINT nFlags, CPoint point);
+	afx_msg void OnMouseHover(UINT nFlags, CPoint point);
+	afx_msg void OnMouseLeave();
+	afx_msg void OnPaint();
+
+	DECLARE_MESSAGE_MAP()
 };

@@ -27,4 +27,6 @@
 //ÑÕÉ«
 #define COLOR_LIGHT_BLUE					RGB(49,113,170)
 #define COLOR_WHITE							RGB(255,255,255)
+#define COLOR_RED							RGB(255,0,0)
+
 

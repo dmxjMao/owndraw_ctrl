@@ -51,3 +51,5 @@
 #endif
 
 
+//#include <bitset>
+#include <boost\regex.hpp>

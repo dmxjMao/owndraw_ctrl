@@ -69,6 +69,10 @@ BEGIN_MESSAGE_MAP(Cowndraw_ctrlDlg, CDialogEx)
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
 	ON_STN_CLICKED(IDC_STATIC_1, &Cowndraw_ctrlDlg::OnStnClickedStatic1)
+	ON_WM_MOUSEMOVE()
+	ON_WM_LBUTTONDOWN()
+	ON_WM_LBUTTONUP()
+	ON_WM_NCMOUSEMOVE()
 END_MESSAGE_MAP()
 
 
@@ -175,14 +179,19 @@ HCURSOR Cowndraw_ctrlDlg::OnQueryDragIcon()
 
 void Cowndraw_ctrlDlg::DrawTheMainDlg(/*CConfig* 配置信息*/)
 {
+	//控件默认ui属性
 	if (!Init())
 		return;
-
+	
+	//控件布局
 	SET_CTL_LOC_ABSOLUTE(IDC_STATIC_1, 0, 0, ID_MY_STATIC_WIDTH, ID_MY_STATIC_HEIGHT);
 	SET_CTL_LOC_ABSOLUTE(IDCANCEL, DLG_CLIENT_X - CANCEL_BTN_RIGHT_MARGIN - OK_BTN_WIDTH, DLG_CLIENT_Y - CANCEL_BTN_BOTTOM_MARGIN - CANCEL_BTN_HEIGHT, CANCEL_BTN_WIDTH, CANCEL_BTN_HEIGHT);
 	SET_CTL_LOC_RELATIVE(IDOK, IDCANCEL, -OK_AND_CANCEL_MARGIN - OK_BTN_WIDTH, 0, OK_BTN_WIDTH, OK_BTN_HEIGHT);
+	
+	//控件自定义属性
+	m_static1 & "textpoint,15"  & "textpoint,13" & "textcolor-RGB(0,255,0)";
 
-	m_static1 & "textpoint:15" & "textcolor:RGB(0,255,0)";
+	
 }
 
 
@@ -191,4 +200,52 @@ void Cowndraw_ctrlDlg::DrawTheMainDlg(/*CConfig* 配置信息*/)
 void Cowndraw_ctrlDlg::OnStnClickedStatic1()
 {
 	// TODO: Add your control notification handler code here
+}
+
+
+void Cowndraw_ctrlDlg::OnMouseMove(UINT nFlags, CPoint point)
+{
+	// TODO: Add your message handler code here and/or call default
+	/*static CPoint PrePoint = CPoint(0, 0);
+	if (MK_LBUTTON == nFlags)
+	{
+		if (point != PrePoint)
+		{
+			CPoint ptTemp = point - PrePoint;
+			CRect rcWindow;
+			GetWindowRect(&rcWindow);
+			rcWindow.OffsetRect(ptTemp.x, ptTemp.y);
+			MoveWindow(&rcWindow);
+			return;
+		}
+	}
+	PrePoint = point;*/
+	CDialogEx::OnMouseMove(nFlags, point);
+}
+
+
+void Cowndraw_ctrlDlg::OnLButtonDown(UINT nFlags, CPoint point)
+{
+	// TODO: Add your message handler code here and/or call default
+	//SetCapture();
+
+	CDialogEx::OnLButtonDown(nFlags, point);
+}
+
+
+void Cowndraw_ctrlDlg::OnLButtonUp(UINT nFlags, CPoint point)
+{
+	// TODO: Add your message handler code here and/or call default
+	//ReleaseCapture();
+
+	CDialogEx::OnLButtonUp(nFlags, point);
+}
+
+
+void Cowndraw_ctrlDlg::OnNcMouseMove(UINT nHitTest, CPoint point)
+{
+	// TODO: Add your message handler code here and/or call default
+
+
+	CDialogEx::OnNcMouseMove(nHitTest, point);
 }

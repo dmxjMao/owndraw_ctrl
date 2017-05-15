@@ -48,6 +48,9 @@
     <ClInclude Include="ctl_property.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="utility.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="owndraw_ctrl.cpp">
@@ -65,6 +68,9 @@
     <ClCompile Include="ctl_adjust.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="utility.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="owndraw_ctrl.rc">
@@ -78,6 +84,18 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\owndraw_ctrl.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\icon1.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\angry_24px_1181308_easyicon.net.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\are_you_for_real_16px_1181309_easyicon.net.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\hope_my_fake_smile_works_again_24px_1181333_easyicon.net.ico">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

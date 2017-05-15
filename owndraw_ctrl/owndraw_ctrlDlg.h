@@ -29,9 +29,7 @@ protected:
 // Implementation
 protected:
 	HICON m_hIcon;
-	//CStatic				m_static_1;
 
-private:
 	LONG				DLG_CLIENT_X;//当前客户区大小
 	LONG				DLG_CLIENT_Y;
 
@@ -50,5 +48,10 @@ public:
 
 	afx_msg void OnStnClickedStatic1();
 protected:
-	CMyStatic1 m_static1;
+	CMyStatic1			m_static1;
+public:
+	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
+	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
+	afx_msg void OnLButtonUp(UINT nFlags, CPoint point);
+	afx_msg void OnNcMouseMove(UINT nHitTest, CPoint point);
 };
