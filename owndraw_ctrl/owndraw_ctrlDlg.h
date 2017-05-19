@@ -5,7 +5,8 @@
 #pragma once
 #include "afxwin.h"
 //#include <memory>
-#include "text1.h"
+#include "sts_test1.h"
+//#include "btn_test1.h"
 
 class COwnDrawCtrl_CStatic_Text1;
 
@@ -46,9 +47,11 @@ private:
 	void DrawTheMainDlg(/*CConfig* ≈‰÷√–≈œ¢*/);
 public:
 
-	afx_msg void OnStnClickedStatic1();
 protected:
 	CMyStatic1			m_static1;
+	CMyBitmapButton		m_test1;
+	
+
 public:
 	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
 	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);

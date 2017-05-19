@@ -1,5 +1,8 @@
 #pragma once
 
+/*控件ID*/
+#define	CTRL_ID						100
+
 /*控件属性*/
 
 //对话框大小
@@ -21,8 +24,13 @@
 #define CANCEL_BTN_BOTTOM_MARGIN			10
 //ok和cancel按钮间距
 #define OK_AND_CANCEL_MARGIN				10
-
-
+//test1按钮大小
+#define TEST1_BTN_WIDTH					OK_BTN_WIDTH
+#define TEST1_BTN_HEIGHT				OK_BTN_HEIGHT
+//test1与对话框的边距
+#define TEST1_BTN_RIGHT_MARGIN				10
+#define TEST1_BTN_TOP_MARGIN				10
+//#define ID_MYCTRL_TEST1						CTRL_ID + 1
 
 //颜色
 #define COLOR_LIGHT_BLUE					RGB(49,113,170)

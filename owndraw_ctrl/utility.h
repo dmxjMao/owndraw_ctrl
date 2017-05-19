@@ -8,7 +8,7 @@ COLORREF GetRGBfromString(const std::string& rgb);
 class CUICfg {
 public:
 	//设置ui属性
-	virtual CUICfg& operator& (const std::string& s) = 0;
+	CUICfg& operator& (const std::string& s);
 
 protected:
 
@@ -19,6 +19,8 @@ private:
 public:
 protected:
 	std::shared_ptr<std::string>			m_uicfg;//ui配置
+	boost::regex							m_uiregex;//ui正则
+
 private:
 
 };

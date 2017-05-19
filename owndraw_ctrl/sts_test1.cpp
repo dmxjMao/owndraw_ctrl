@@ -1,22 +1,27 @@
 #include "stdafx.h"
-#include "text1.h"
+#include "resource.h"
+#include "sts_test1.h"
+#include "ctl_adjust.h"
 #include "ctl_property.h"
 
-
-//ui属性正则
-boost::regex g_regexUI(
-	"textpoint\\s*[-:,./]\\s*([0-9]+)|"//字体大小
-	"textcolor\\s*[-:,./]\\s*(RGB[^@]+)|"//字体颜色	
-	"ctrlbgcolor\\s*[-:,./]\\s*(RGB[^@]+)"//控件背景色
-	, boost::regex_constants::icase
-);
 
 bool				g_bMouseTrack = true;//鼠标悬停控制
 COLORREF			g_color;//颜色变量
 
 CMyStatic1::CMyStatic1()
 {
+	try {
+		//ui属性正则
+		m_uiregex.assign(
+			"textpoint\\s*[-:,./]\\s*([0-9]+)|"//字体大小
+			"textcolor\\s*[-:,./]\\s*(RGB[^@]+)|"//字体颜色	
+			"ctrlbgcolor\\s*[-:,./]\\s*(RGB[^@]+)"//控件背景色
+			, boost::regex_constants::icase);
+	}
+	catch (boost::regex_error e) {
 
+	}
+	
 }
 
 BEGIN_MESSAGE_MAP(CMyStatic1, CStatic)
@@ -44,6 +49,9 @@ bool CMyStatic1::Init()
 	m_colorText = COLOR_WHITE;//文字颜色
 	m_colorHightLight = COLOR_RED;//高亮文本颜色
 
+
+	//样式
+	//ModifyStyle(0, WS_POPUP);
 	return true;
 }
 
@@ -52,6 +60,7 @@ bool CMyStatic1::Init()
 
 void CMyStatic1::OnPaint()
 {
+	
 	CPaintDC dc(this); // device context for painting
 					   // TODO: Add your message handler code here
 					   // Do not call CStatic::OnPaint() for painting messages
@@ -65,35 +74,20 @@ void CMyStatic1::OnPaint()
 	dc.SetTextColor(m_colorText);
 	dc.DrawText(_T(" 这是个标题"),&rc, DT_SINGLELINE|DT_VCENTER);
 
+	//if (!m_test1.GetSafeHwnd()) {
+	//	m_test1.Create(_T(""), WS_CHILD | WS_VISIBLE | BS_OWNERDRAW,
+	//		CRect(0, 0, 0, 0), this, ID_MYCTRL_TEST1);
+	//	
+	//	m_test1.LoadBitmaps(IDB_TEST1U);
+	//	m_test1.SizeToContent();
+
+	//	CSize bmSize = m_test1.GetBitmapSize();
+	//	SetCtrlLocAbsolute(ID_MYCTRL_TEST1, DLG_SIZE_CX - 2 - bmSize.cx, 2, bmSize.cx, bmSize.cy);
+	//	//m_test1.SetWindowPos(&wndTop, DLG_SIZE_CX - 2 - bmSize.cx, 2, bmSize.cx, bmSize.cy, SWP_NOREDRAW);
+	//	m_test1.ShowWindow(SW_NORMAL);
+	//}
 }
 
-
-
-CMyStatic1& CMyStatic1::operator & (const std::string& s)
-{
-
-	if (!m_uicfg)
-		m_uicfg = std::make_shared<std::string>();
-	//查找重复属性
-	size_t pos = s.find_first_of("-:,./");
-	std::string strCfgname = s.substr(0,pos);
-	pos = m_uicfg->find(strCfgname);
-	if(std::string::npos == pos)
-		(*m_uicfg) += s + '@';
-	else {
-		size_t posEnd = m_uicfg->find_first_of('@', pos);
-		m_uicfg->replace(pos, posEnd - pos, s);
-	}
-	
-	boost::sregex_iterator it(m_uicfg->begin(), m_uicfg->end(), g_regexUI), itend;
-	//对每一个匹配结果，虽然会有重复调用，但是对于ui配置这种次数不影响效率
-	//std::for_each(it, itend, &CMyStatic1::regex_callback);
-	for (; it != itend; ++it) {
-		regex_callback(*it);
-	}
-
-	return(*this);
-}
 
 bool CMyStatic1::regex_callback(const boost::smatch& what)
 {
@@ -113,18 +107,18 @@ bool CMyStatic1::regex_callback(const boost::smatch& what)
 	{
 		LOGFONT ft;
 		m_font.GetLogFont(&ft);
-		ft.lfHeight = stoi(what[1].str());
+		ft.lfHeight = stoi(what[i].str());
 		m_font.DeleteObject();
 		m_font.CreateFontIndirect(&ft);
 		break;
 	}
 	case 2:
 	{
-		m_colorText = GetRGBfromString(what[2].str());
+		m_colorText = GetRGBfromString(what[i].str());
 		break;
 	}
 	case 3:
-		m_colorCtrlBG = GetRGBfromString(what[3].str());
+		m_colorCtrlBG = GetRGBfromString(what[i].str());
 		break;
 	}
 
@@ -147,18 +141,18 @@ void CMyStatic1::OnMouseMove(UINT nFlags, CPoint point)
 		}
 	}
 	PrePoint = point;
-	//鼠标悬停
-	if (g_bMouseTrack)
-	{
-		g_bMouseTrack = false;
-		TRACKMOUSEEVENT tme;
-		tme.cbSize = sizeof(TRACKMOUSEEVENT);
-		tme.dwFlags = TME_HOVER | TME_LEAVE;
-		//tme.dwHoverTime = HOVER_DEFAULT;  
-		tme.dwHoverTime = 50;
-		tme.hwndTrack = GetSafeHwnd();
-		TrackMouseEvent(&tme);
-	}
+	////鼠标悬停
+	//if (g_bMouseTrack)
+	//{
+	//	g_bMouseTrack = false;
+	//	TRACKMOUSEEVENT tme;
+	//	tme.cbSize = sizeof(TRACKMOUSEEVENT);
+	//	tme.dwFlags = TME_HOVER | TME_LEAVE;
+	//	//tme.dwHoverTime = HOVER_DEFAULT;  
+	//	tme.dwHoverTime = 50;
+	//	tme.hwndTrack = GetSafeHwnd();
+	//	TrackMouseEvent(&tme);
+	//}
 	//__super::OnMouseMove(nFlags, point);
 }
 
@@ -182,17 +176,28 @@ void CMyStatic1::OnLButtonUp(UINT nFlags, CPoint point)
 }
 
 
-void CMyStatic1::OnMouseHover(UINT nFlags, CPoint point)
-{
-	g_color = m_colorText;//保存原来的文本颜色
-	m_colorText = COLOR_RED;
-	Invalidate();
-}
+//void CMyStatic1::OnMouseHover(UINT nFlags, CPoint point)
+//{
+//	g_color = m_colorText;//保存原来的文本颜色
+//	m_colorText = COLOR_RED;
+//	Invalidate();
+//}
+//
+//
+//void CMyStatic1::OnMouseLeave()
+//{
+//	g_bMouseTrack = true;
+//	m_colorText = g_color;
+//	Invalidate();
+//}
 
 
-void CMyStatic1::OnMouseLeave()
+void CMyStatic1::PreSubclassWindow()
 {
-	g_bMouseTrack = true;
-	m_colorText = g_color;
-	Invalidate();
+	// TODO: Add your specialized code here and/or call the base class
+
+	//m_test1.AutoLoad(ID_TEST1, this);
+	//SetCtrlLocRelativeDlg(ID_TEST1, RELATIVE_LOC::RIGHT_TOP, 1, 1);
+
+	__super::PreSubclassWindow();
 }

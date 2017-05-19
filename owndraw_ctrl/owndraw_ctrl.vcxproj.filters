@@ -19,6 +19,9 @@
     <Filter Include="OwnDrawCtrl\CStatic">
       <UniqueIdentifier>{e89b4ae6-97e2-4337-866d-9255f1721b8f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="OwnDrawCtrl\CButton">
+      <UniqueIdentifier>{54ab1ec2-f350-4f3e-9681-63f8f7bff292}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -39,9 +42,6 @@
     <ClInclude Include="Resource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="text1.h">
-      <Filter>OwnDrawCtrl\CStatic</Filter>
-    </ClInclude>
     <ClInclude Include="ctl_adjust.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -50,6 +50,12 @@
     </ClInclude>
     <ClInclude Include="utility.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="btn_test1.h">
+      <Filter>OwnDrawCtrl\CButton</Filter>
+    </ClInclude>
+    <ClInclude Include="sts_test1.h">
+      <Filter>OwnDrawCtrl\CStatic</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -62,14 +68,17 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="text1.cpp">
-      <Filter>OwnDrawCtrl\CStatic</Filter>
-    </ClCompile>
     <ClCompile Include="ctl_adjust.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="utility.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="btn_test1.cpp">
+      <Filter>OwnDrawCtrl\CButton</Filter>
+    </ClCompile>
+    <ClCompile Include="sts_test1.cpp">
+      <Filter>OwnDrawCtrl\CStatic</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -96,6 +105,18 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\hope_my_fake_smile_works_again_24px_1181333_easyicon.net.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="C:\Users\2015\Downloads\close_24px_1175541_easyicon.net.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="C:\Users\2015\Downloads\close_24px_1175741_easyicon.net.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\close_24px_1175541_easyicon.net.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\close_24px_1175741_easyicon.net.bmp">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

@@ -68,7 +68,6 @@ BEGIN_MESSAGE_MAP(Cowndraw_ctrlDlg, CDialogEx)
 	ON_WM_SYSCOMMAND()
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
-	ON_STN_CLICKED(IDC_STATIC_1, &Cowndraw_ctrlDlg::OnStnClickedStatic1)
 	ON_WM_MOUSEMOVE()
 	ON_WM_LBUTTONDOWN()
 	ON_WM_LBUTTONUP()
@@ -78,7 +77,8 @@ END_MESSAGE_MAP()
 
 bool Cowndraw_ctrlDlg::Init()
 {
-	bool b = m_static1.Init();
+	bool b = m_static1.Init()  
+		|| m_test1.Init();
 
 	return b;
 }
@@ -167,6 +167,7 @@ void Cowndraw_ctrlDlg::OnPaint()
 	{
 		CDialogEx::OnPaint();
 	}
+
 }
 
 // The system calls this function to obtain the cursor to display while the user drags
@@ -183,13 +184,21 @@ void Cowndraw_ctrlDlg::DrawTheMainDlg(/*CConfig* 配置信息*/)
 	if (!Init())
 		return;
 	
-	//控件布局
-	SET_CTL_LOC_ABSOLUTE(IDC_STATIC_1, 0, 0, ID_MY_STATIC_WIDTH, ID_MY_STATIC_HEIGHT);
-	SET_CTL_LOC_ABSOLUTE(IDCANCEL, DLG_CLIENT_X - CANCEL_BTN_RIGHT_MARGIN - OK_BTN_WIDTH, DLG_CLIENT_Y - CANCEL_BTN_BOTTOM_MARGIN - CANCEL_BTN_HEIGHT, CANCEL_BTN_WIDTH, CANCEL_BTN_HEIGHT);
-	SET_CTL_LOC_RELATIVE(IDOK, IDCANCEL, -OK_AND_CANCEL_MARGIN - OK_BTN_WIDTH, 0, OK_BTN_WIDTH, OK_BTN_HEIGHT);
+	//控件布局:控件在Create时就指定了ZOrder的顺序，先Create的控件ZOrder值最小（最先响应此控件）
+	//如果调用了SetWindowPos，且第一个参数为NULL，也不指定SWP_NOZORDER属性，则系统会将此控件置顶，此时ZOrder值变为最小，最先响应。
+	/*标题*/SetCtrlLocAbsolute(IDC_STATIC_1, 0, 0, ID_MY_STATIC_WIDTH, ID_MY_STATIC_HEIGHT);
+	/*cancel按钮*/SetCtrlLocRelativeDlg(IDCANCEL, RELATIVE_LOC::RIGHT_BOTTOM, 10, 10);
+	/*ok按钮*/SetCtrlLocRelativeCtrl(IDOK, IDCANCEL, RELATIVE_LOC::LEFT_TOP, 10, 0);
 	
+	/*关闭按钮*/
+	m_test1.AutoLoad(ID_MYCTRL_TEST1, this);
+	SetCtrlLocRelativeDlg(ID_MYCTRL_TEST1, RELATIVE_LOC::LEFT_BOTTOM, 30, 30);
+	//m_test1.SetWindowPos(NULL, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE);//控件置顶，先响应消息
+	//m_static1.SetWindowPos(&m_test1, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE);
+
 	//控件自定义属性
 	m_static1 & "textpoint,15"  & "textpoint,13" & "textcolor-RGB(0,255,0)";
+	//m_test1 & "ctrlbgcolor,RGB(49,113,170)";
 
 	
 }
@@ -197,10 +206,6 @@ void Cowndraw_ctrlDlg::DrawTheMainDlg(/*CConfig* 配置信息*/)
 
 
 
-void Cowndraw_ctrlDlg::OnStnClickedStatic1()
-{
-	// TODO: Add your control notification handler code here
-}
 
 
 void Cowndraw_ctrlDlg::OnMouseMove(UINT nFlags, CPoint point)
@@ -249,3 +254,5 @@ void Cowndraw_ctrlDlg::OnNcMouseMove(UINT nHitTest, CPoint point)
 
 	CDialogEx::OnNcMouseMove(nHitTest, point);
 }
+
+

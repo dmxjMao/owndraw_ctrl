@@ -3,11 +3,11 @@
 
 /*控件布局*/
 
+enum class RELATIVE_LOC { LEFT_TOP, RIGHT_TOP, LEFT_BOTTOM, RIGHT_BOTTOM };//相对位置
 
 //设置控件位置
-//绝对位置：x,y,cx,cy; b:是否使用默认大小; b&&!cx使用默认大小初始化
-//UINT flag = (b && !cx) ? (SWP_NOZORDER | SWP_NOSIZE) : SWP_NOZORDER;
-#define SET_CTL_LOC_ABSOLUTE(id,x,y,cx,cy) \
+//绝对位置：x,y,cx,cy;
+#define SetCtrlLocAbsolute(id,x,y,cx,cy) \
 {\
 	CWnd* pWnd = GetDlgItem(id);\
 	if(pWnd){\
@@ -15,14 +15,73 @@
 	}\
 }
 
-//相对位置：idrel相对控件，offx,offy偏移; b:是否使用默认大小
-#define SET_CTL_LOC_RELATIVE(id,idrel,offx,offy,cx,cy) \
+//相对控件：idrel相对控件，offx,offy偏移; 
+#define SetCtrlLocRelativeCtrl(id,idrel,dir,offx,offy) \
 {\
-	CWnd* pWnd = GetDlgItem(id);\
-	if(pWnd){\
-		RECT rc;\
-		GetDlgItem(idrel)->GetWindowRect(&rc);\
-		ScreenToClient(&rc);\
-		pWnd->SetWindowPos(0, rc.left + offx, rc.top + offy, cx, cy, SWP_NOZORDER | SWP_NOREDRAW);\
+	CWnd* pWnd = GetDlgItem(idrel); \
+	if (pWnd) {\
+		CRect rcCtrlrel;\
+		pWnd->GetWindowRect(&rcCtrlrel);\
+		CWnd* pWnd2 = GetDlgItem(id);\
+		if (pWnd2) {\
+			CRect rcCtrl;\
+			pWnd2->GetClientRect(&rcCtrl);\
+			int x, y;\
+			switch (dir)\
+			{\
+			case RELATIVE_LOC::LEFT_TOP:\
+				x = rcCtrlrel.left - offx - rcCtrl.Width();\
+				y = rcCtrlrel.top;\
+				break;\
+			case RELATIVE_LOC::RIGHT_TOP:\
+				x = rcCtrlrel.right + offx;\
+				y = rcCtrlrel.top - offy;\
+				break;\
+			case RELATIVE_LOC::RIGHT_BOTTOM:\
+				x = rcCtrlrel.right + offx;\
+				y = rcCtrlrel.bottom + offy;\
+				break;\
+			case RELATIVE_LOC::LEFT_BOTTOM:\
+				x = rcCtrlrel.left - offx - rcCtrl.Width();\
+				y = rcCtrlrel.bottom + offy;\
+				break;\
+			}\
+			pWnd2->SetWindowPos(0, x, y, rcCtrl.Width(), rcCtrl.Height(), SWP_NOZORDER | SWP_NOREDRAW);\
+		}\
 	}\
 }
+
+//相对对话框：id控件ID，dir：相对，offx偏移量(>0)
+#define SetCtrlLocRelativeDlg(id,dir,offx,offy) \
+{\
+	CWnd* pWnd = GetDlgItem(id);\
+	if (pWnd) {\
+		CRect rcCtl;\
+		pWnd->GetClientRect(&rcCtl);\
+		CRect rcDlg;\
+		GetClientRect(&rcDlg); \
+		int x, y;\
+		switch (dir) {\
+		case RELATIVE_LOC::LEFT_TOP:\
+			x = rcDlg.left + offx;\
+			y = offy;\
+			break;\
+		case RELATIVE_LOC::RIGHT_TOP:\
+			x = rcDlg.right - offx - rcCtl.Width();\
+			y = offy;\
+			break;\
+		case RELATIVE_LOC::RIGHT_BOTTOM:\
+			x = rcDlg.right - offx - rcCtl.Width();\
+			y = rcDlg.bottom - offy - rcCtl.Height();\
+			break;\
+		case RELATIVE_LOC::LEFT_BOTTOM:\
+			x = rcDlg.left + offx;\
+			y = rcDlg.bottom - offy - rcCtl.Height();\
+			break;\
+		}\
+		pWnd->SetWindowPos(0, x, y, rcCtl.Width(), rcCtl.Height(), SWP_NOZORDER | SWP_NOREDRAW); \
+	}\
+}
+
+
+
