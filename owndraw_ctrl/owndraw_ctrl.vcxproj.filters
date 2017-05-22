@@ -22,6 +22,9 @@
     <Filter Include="OwnDrawCtrl\CButton">
       <UniqueIdentifier>{54ab1ec2-f350-4f3e-9681-63f8f7bff292}</UniqueIdentifier>
     </Filter>
+    <Filter Include="OwnDrawCtrl\CListCtrl">
+      <UniqueIdentifier>{11b4001a-8c3e-475f-9c41-2db8112fada1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -57,6 +60,9 @@
     <ClInclude Include="sts_test1.h">
       <Filter>OwnDrawCtrl\CStatic</Filter>
     </ClInclude>
+    <ClInclude Include="listctrl_test1.h">
+      <Filter>OwnDrawCtrl\CListCtrl</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="owndraw_ctrl.cpp">
@@ -79,6 +85,9 @@
     </ClCompile>
     <ClCompile Include="sts_test1.cpp">
       <Filter>OwnDrawCtrl\CStatic</Filter>
+    </ClCompile>
+    <ClCompile Include="listctrl_test1.cpp">
+      <Filter>OwnDrawCtrl\CListCtrl</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

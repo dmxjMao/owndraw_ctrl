@@ -71,15 +71,11 @@ void CMyBitmapButton::PreSubclassWindow()
 
 void CMyBitmapButton::DrawItem(LPDRAWITEMSTRUCT lpDIS)
 {
-	// TODO:  Add your code to draw the specified item
-	//CDC* pDC = CDC::FromHandle(lpDIS->hDC);
-	 
-	CRgn rgn;
-	CRect rct;
-	GetClientRect(&rct);
-	rgn.CreateEllipticRgnIndirect(&rct);//在按钮矩形内创建椭圆区域  
-	SetWindowRgn((HRGN)rgn, true);//将椭圆区域应用到按钮上  
-	//pDC->SelectObject(rgn);
+	//CRgn rgn;
+	//CRect rct;
+	//GetClientRect(&rct);
+	//rgn.CreateEllipticRgnIndirect(&rct);//在按钮矩形内创建椭圆区域  
+	//SetWindowRgn((HRGN)rgn, true);//将椭圆区域应用到按钮上，对于WS_CHILD无效
 
 	__super::DrawItem(lpDIS);
 }

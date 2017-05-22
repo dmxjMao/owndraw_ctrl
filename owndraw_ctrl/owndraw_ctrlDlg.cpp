@@ -71,7 +71,7 @@ BEGIN_MESSAGE_MAP(Cowndraw_ctrlDlg, CDialogEx)
 	ON_WM_MOUSEMOVE()
 	ON_WM_LBUTTONDOWN()
 	ON_WM_LBUTTONUP()
-	ON_WM_NCMOUSEMOVE()
+	ON_WM_ERASEBKGND()
 END_MESSAGE_MAP()
 
 
@@ -170,6 +170,7 @@ void Cowndraw_ctrlDlg::OnPaint()
 
 }
 
+
 // The system calls this function to obtain the cursor to display while the user drags
 //  the minimized window.
 HCURSOR Cowndraw_ctrlDlg::OnQueryDragIcon()
@@ -247,12 +248,16 @@ void Cowndraw_ctrlDlg::OnLButtonUp(UINT nFlags, CPoint point)
 }
 
 
-void Cowndraw_ctrlDlg::OnNcMouseMove(UINT nHitTest, CPoint point)
+
+
+
+BOOL Cowndraw_ctrlDlg::OnEraseBkgnd(CDC* pDC)
 {
 	// TODO: Add your message handler code here and/or call default
+	//CRect rc;
+	//GetClientRect(&rc);
+	//pDC->FillSolidRect(&rc, RGB(123, 123, 123));
+	//return TRUE;
 
-
-	CDialogEx::OnNcMouseMove(nHitTest, point);
+	return CDialogEx::OnEraseBkgnd(pDC);
 }
-
-

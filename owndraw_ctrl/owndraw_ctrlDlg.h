@@ -6,7 +6,7 @@
 #include "afxwin.h"
 //#include <memory>
 #include "sts_test1.h"
-//#include "btn_test1.h"
+#include "btn_test1.h"
 
 class COwnDrawCtrl_CStatic_Text1;
 
@@ -56,5 +56,5 @@ public:
 	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
 	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
 	afx_msg void OnLButtonUp(UINT nFlags, CPoint point);
-	afx_msg void OnNcMouseMove(UINT nHitTest, CPoint point);
+	afx_msg BOOL OnEraseBkgnd(CDC* pDC);
 };

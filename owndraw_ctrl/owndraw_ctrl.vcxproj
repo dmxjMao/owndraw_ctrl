@@ -186,6 +186,7 @@
     <ClInclude Include="btn_test1.h" />
     <ClInclude Include="ctl_adjust.h" />
     <ClInclude Include="ctl_property.h" />
+    <ClInclude Include="listctrl_test1.h" />
     <ClInclude Include="owndraw_ctrl.h" />
     <ClInclude Include="owndraw_ctrlDlg.h" />
     <ClInclude Include="Resource.h" />
@@ -197,6 +198,7 @@
   <ItemGroup>
     <ClCompile Include="btn_test1.cpp" />
     <ClCompile Include="ctl_adjust.cpp" />
+    <ClCompile Include="listctrl_test1.cpp" />
     <ClCompile Include="owndraw_ctrl.cpp" />
     <ClCompile Include="owndraw_ctrlDlg.cpp" />
     <ClCompile Include="stdafx.cpp">

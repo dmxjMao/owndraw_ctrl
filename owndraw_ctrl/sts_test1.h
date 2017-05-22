@@ -1,6 +1,5 @@
 #pragma once
 #include "utility.h"
-#include "btn_test1.h"
 
 class CMyStatic1 : public CStatic, public CUICfg
 {
