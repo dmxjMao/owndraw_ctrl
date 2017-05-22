@@ -6,7 +6,7 @@ class CMyBitmapButton : public CBitmapButton, public CUICfg
 	//·½·¨
 public:
 	CMyBitmapButton();
-	bool Init();
+	//bool Init();
 	CSize GetBitmapSize();
 
 protected:

@@ -6,7 +6,7 @@ class CMyStatic1 : public CStatic, public CUICfg
 	//·½·¨
 public:
 	CMyStatic1();
-	bool Init();
+	//bool Init();
 	
 	//virtual CMyStatic1& operator & (const std::string& s);
 

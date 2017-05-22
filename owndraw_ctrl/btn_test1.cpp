@@ -22,12 +22,12 @@ CMyBitmapButton::CMyBitmapButton()
 }
 
 
-bool CMyBitmapButton::Init()
-{
-	//初始化默认UI
-	//m_colorCtrlBG = COLOR_LIGHT_BLUE;
-	return true;
-}
+//bool CMyBitmapButton::Init()
+//{
+//	//初始化默认UI
+//	//m_colorCtrlBG = COLOR_LIGHT_BLUE;
+//	return true;
+//}
 
 
 CSize CMyBitmapButton::GetBitmapSize()

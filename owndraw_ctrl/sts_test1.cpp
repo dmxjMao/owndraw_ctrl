@@ -34,26 +34,26 @@ ON_WM_MOUSELEAVE()
 END_MESSAGE_MAP()
 
 
-bool CMyStatic1::Init()
-{
-	//初始化默认UI
-	//字体
-	LOGFONT lf;
-	memset(&lf, 0, sizeof(LOGFONT));
-	lf.lfHeight = 20;
-	_stprintf_s(lf.lfFaceName, _T("%s"), _T("宋体"));
-	m_font.CreateFontIndirect(&lf);
-	SetFont(&m_font);//构造函数，还没有控件，调用失败
-					
-	m_colorCtrlBG = COLOR_LIGHT_BLUE;//控件背景色
-	m_colorText = COLOR_WHITE;//文字颜色
-	m_colorHightLight = COLOR_RED;//高亮文本颜色
-
-
-	//样式
-	//ModifyStyle(0, WS_POPUP);
-	return true;
-}
+//bool CMyStatic1::Init()
+//{
+//	//初始化默认UI
+//	//字体
+//	LOGFONT lf;
+//	memset(&lf, 0, sizeof(LOGFONT));
+//	lf.lfHeight = 20;
+//	_stprintf_s(lf.lfFaceName, _T("%s"), _T("宋体"));
+//	m_font.CreateFontIndirect(&lf);
+//	SetFont(&m_font);//构造函数，还没有控件，调用失败
+//					
+//	m_colorCtrlBG = COLOR_LIGHT_BLUE;//控件背景色
+//	m_colorText = COLOR_WHITE;//文字颜色
+//	m_colorHightLight = COLOR_RED;//高亮文本颜色
+//
+//
+//	//样式
+//	//ModifyStyle(0, WS_POPUP);
+//	return true;
+//}
 
 
 
@@ -196,8 +196,18 @@ void CMyStatic1::PreSubclassWindow()
 {
 	// TODO: Add your specialized code here and/or call the base class
 
-	//m_test1.AutoLoad(ID_TEST1, this);
-	//SetCtrlLocRelativeDlg(ID_TEST1, RELATIVE_LOC::RIGHT_TOP, 1, 1);
+	//初始化默认UI
+	//字体
+	LOGFONT lf;
+	memset(&lf, 0, sizeof(LOGFONT));
+	lf.lfHeight = 20;
+	_stprintf_s(lf.lfFaceName, _T("%s"), _T("宋体"));
+	m_font.CreateFontIndirect(&lf);
+	SetFont(&m_font);//构造函数，还没有控件，调用失败
+						
+	m_colorCtrlBG = COLOR_LIGHT_BLUE;//控件背景色
+	m_colorText = COLOR_WHITE;//文字颜色
+	m_colorHightLight = COLOR_RED;//高亮文本颜色
 
 	__super::PreSubclassWindow();
 }

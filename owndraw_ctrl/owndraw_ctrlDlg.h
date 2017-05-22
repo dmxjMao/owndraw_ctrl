@@ -7,6 +7,7 @@
 //#include <memory>
 #include "sts_test1.h"
 #include "btn_test1.h"
+#include "listctrl_test1.h"
 
 class COwnDrawCtrl_CStatic_Text1;
 
@@ -24,7 +25,7 @@ public:
 
 protected:
 	virtual void DoDataExchange(CDataExchange* pDX);	// DDX/DDV support
-	bool Init();
+	//bool Init();
 
 
 // Implementation
@@ -44,13 +45,13 @@ protected:
 	//自定义
 private:
 	//绘制主界面
-	void DrawTheMainDlg(/*CConfig* 配置信息*/);
+	void LayoutMainDlg(/*CConfig* 配置信息*/);
 public:
 
 protected:
 	CMyStatic1			m_static1;
 	CMyBitmapButton		m_test1;
-	
+	CMyListCtrl1		m_list1;
 
 public:
 	afx_msg void OnMouseMove(UINT nFlags, CPoint point);

@@ -21,3 +21,12 @@ bool CMyListCtrl1::regex_callback(const boost::smatch& what)
 {
 	return true;
 }
+
+BOOL CMyListCtrl1::PreCreateWindow(CREATESTRUCT& cs)
+{
+	// TODO: Add your specialized code here and/or call the base class
+	ModifyStyle(0, LVS_ICON);
+
+
+	return __super::PreCreateWindow(cs);
+}

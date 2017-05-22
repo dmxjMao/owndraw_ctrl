@@ -75,13 +75,13 @@ BEGIN_MESSAGE_MAP(Cowndraw_ctrlDlg, CDialogEx)
 END_MESSAGE_MAP()
 
 
-bool Cowndraw_ctrlDlg::Init()
-{
-	bool b = m_static1.Init()  
-		|| m_test1.Init();
-
-	return b;
-}
+//bool Cowndraw_ctrlDlg::Init()
+//{
+//	bool b = m_static1.Init()  
+//		|| m_test1.Init();
+//
+//	return b;
+//}
 
 // Cowndraw_ctrlDlg message handlers
 
@@ -120,8 +120,8 @@ BOOL Cowndraw_ctrlDlg::OnInitDialog()
 	GetClientRect(&rcClient);
 	DLG_CLIENT_X = rcClient.right - rcClient.left;
 	DLG_CLIENT_Y  = rcClient.bottom - rcClient.top;
-	//ModifyStyle(WS_SIZEBOX,0);
-	DrawTheMainDlg();//绘制主界面
+
+	LayoutMainDlg();//绘制主界面
 
 
 	return TRUE;  // return TRUE  unless you set the focus to a control
@@ -179,14 +179,13 @@ HCURSOR Cowndraw_ctrlDlg::OnQueryDragIcon()
 }
 
 
-void Cowndraw_ctrlDlg::DrawTheMainDlg(/*CConfig* 配置信息*/)
+void Cowndraw_ctrlDlg::LayoutMainDlg(/*CConfig* 配置信息*/)
 {
-	//控件默认ui属性
-	if (!Init())
-		return;
+	//控件默认ui属性，改为PreCreateWindow
+	//if (!Init())
+	//	return;
 	
-	//控件布局:控件在Create时就指定了ZOrder的顺序，先Create的控件ZOrder值最小（最先响应此控件）
-	//如果调用了SetWindowPos，且第一个参数为NULL，也不指定SWP_NOZORDER属性，则系统会将此控件置顶，此时ZOrder值变为最小，最先响应。
+	//控件布局
 	/*标题*/SetCtrlLocAbsolute(IDC_STATIC_1, 0, 0, ID_MY_STATIC_WIDTH, ID_MY_STATIC_HEIGHT);
 	/*cancel按钮*/SetCtrlLocRelativeDlg(IDCANCEL, RELATIVE_LOC::RIGHT_BOTTOM, 10, 10);
 	/*ok按钮*/SetCtrlLocRelativeCtrl(IDOK, IDCANCEL, RELATIVE_LOC::LEFT_TOP, 10, 0);
