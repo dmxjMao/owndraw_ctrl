@@ -59,4 +59,6 @@ public:
 	afx_msg void OnLButtonUp(UINT nFlags, CPoint point);
 	afx_msg BOOL OnEraseBkgnd(CDC* pDC);
 
+	virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
+	virtual void PreSubclassWindow();
 };

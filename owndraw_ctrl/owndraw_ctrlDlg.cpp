@@ -182,11 +182,7 @@ HCURSOR Cowndraw_ctrlDlg::OnQueryDragIcon()
 
 
 void Cowndraw_ctrlDlg::LayoutMainDlg(/*CConfig* 配置信息*/)
-{
-	//控件默认ui属性，改为PreCreateWindow
-	//if (!Init())
-	//	return;
-	
+{	
 	//控件布局
 	/*标题*/SetCtrlLocAbsolute(IDC_STATIC_1, 0, 0, ID_MY_STATIC_WIDTH, ID_MY_STATIC_HEIGHT);
 	/*cancel按钮*/SetCtrlLocRelativeDlg(IDCANCEL, RELATIVE_LOC::RIGHT_BOTTOM, 10, 10);
@@ -197,11 +193,14 @@ void Cowndraw_ctrlDlg::LayoutMainDlg(/*CConfig* 配置信息*/)
 	SetCtrlLocRelativeDlg(ID_MYCTRL_TEST1, RELATIVE_LOC::LEFT_BOTTOM, 30, 30);
 
 	/*listctrl*/
-	SetCtrlLocAbsolute(IDC_LIST1, 0, 100, DLG_CLIENT_X, 250);
+	SetCtrlLocAbsolute(IDC_LIST1, 10, 100, DLG_CLIENT_X - 20, 250);
 
 	//控件自定义属性
 	m_static1 & "textpoint,15"  & "textpoint,13" & "textcolor-RGB(0,255,0)";
 	//m_test1 & "ctrlbgcolor,RGB(49,113,170)";
+
+	//控件默认ui属性，改为PreCreateWindow
+	m_list1.Init();
 }
 
 
@@ -260,4 +259,20 @@ BOOL Cowndraw_ctrlDlg::OnEraseBkgnd(CDC* pDC)
 	//return TRUE;
 
 	return CDialogEx::OnEraseBkgnd(pDC);
+}
+
+
+BOOL Cowndraw_ctrlDlg::PreCreateWindow(CREATESTRUCT& cs)
+{
+	// TODO: Add your specialized code here and/or call the base class
+
+	return CDialogEx::PreCreateWindow(cs);
+}
+
+
+void Cowndraw_ctrlDlg::PreSubclassWindow()
+{
+	// TODO: Add your specialized code here and/or call the base class
+
+	CDialogEx::PreSubclassWindow();
 }
