@@ -17,7 +17,8 @@ private:
 public:
 
 protected:
-	//COLORREF			m_colorCtrlBG;//控件背景颜色				
+	//COLORREF			m_colorCtrlBG;//控件背景颜色	
+	CRgn				m_rgn;//控件形状
 
 private:
 	virtual bool regex_callback(const boost::smatch& what);//ui正则回调

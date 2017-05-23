@@ -107,15 +107,6 @@
     <Image Include="res\icon1.ico">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="res\angry_24px_1181308_easyicon.net.ico">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\are_you_for_real_16px_1181309_easyicon.net.ico">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\hope_my_fake_smile_works_again_24px_1181333_easyicon.net.ico">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="C:\Users\2015\Downloads\close_24px_1175541_easyicon.net.bmp">
       <Filter>Resource Files</Filter>
     </Image>
@@ -126,6 +117,12 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\close_24px_1175741_easyicon.net.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\bitmap2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\listctrl1_bmp.bmp">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

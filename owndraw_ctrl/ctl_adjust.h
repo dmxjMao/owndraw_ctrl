@@ -84,4 +84,3 @@ enum class RELATIVE_LOC { LEFT_TOP, RIGHT_TOP, LEFT_BOTTOM, RIGHT_BOTTOM };//Па¶
 }
 
 
-

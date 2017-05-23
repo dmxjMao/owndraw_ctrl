@@ -74,8 +74,8 @@ void CMyBitmapButton::DrawItem(LPDRAWITEMSTRUCT lpDIS)
 	//CRgn rgn;
 	//CRect rct;
 	//GetClientRect(&rct);
-	//rgn.CreateEllipticRgnIndirect(&rct);//在按钮矩形内创建椭圆区域  
-	//SetWindowRgn((HRGN)rgn, true);//将椭圆区域应用到按钮上，对于WS_CHILD无效
+	//m_rgn.CreateEllipticRgnIndirect(&rct);//在按钮矩形内创建椭圆区域  
+	//SetWindowRgn(m_rgn, true);//将椭圆区域应用到按钮上，对于WS_CHILD无效
 
 	__super::DrawItem(lpDIS);
 }

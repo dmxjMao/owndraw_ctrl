@@ -62,6 +62,7 @@ void Cowndraw_ctrlDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
 	DDX_Control(pDX, IDC_STATIC_1, m_static1);
+	DDX_Control(pDX, IDC_LIST1, m_list1);
 }
 
 BEGIN_MESSAGE_MAP(Cowndraw_ctrlDlg, CDialogEx)
@@ -121,7 +122,8 @@ BOOL Cowndraw_ctrlDlg::OnInitDialog()
 	DLG_CLIENT_X = rcClient.right - rcClient.left;
 	DLG_CLIENT_Y  = rcClient.bottom - rcClient.top;
 
-	LayoutMainDlg();//绘制主界面
+	//布局控件
+	LayoutMainDlg();
 
 
 	return TRUE;  // return TRUE  unless you set the focus to a control
@@ -193,14 +195,13 @@ void Cowndraw_ctrlDlg::LayoutMainDlg(/*CConfig* 配置信息*/)
 	/*关闭按钮*/
 	m_test1.AutoLoad(ID_MYCTRL_TEST1, this);
 	SetCtrlLocRelativeDlg(ID_MYCTRL_TEST1, RELATIVE_LOC::LEFT_BOTTOM, 30, 30);
-	//m_test1.SetWindowPos(NULL, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE);//控件置顶，先响应消息
-	//m_static1.SetWindowPos(&m_test1, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE);
+
+	/*listctrl*/
+	SetCtrlLocAbsolute(IDC_LIST1, 0, 100, DLG_CLIENT_X, 250);
 
 	//控件自定义属性
 	m_static1 & "textpoint,15"  & "textpoint,13" & "textcolor-RGB(0,255,0)";
 	//m_test1 & "ctrlbgcolor,RGB(49,113,170)";
-
-	
 }
 
 
