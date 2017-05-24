@@ -24,3 +24,6 @@ protected:
 private:
 
 };
+
+
+bool IsCommonControlsEnabled();

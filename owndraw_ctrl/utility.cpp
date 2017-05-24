@@ -41,3 +41,26 @@ CUICfg& CUICfg::operator & (const std::string& s)
 
 	return(*this);
 }
+
+
+bool IsCommonControlsEnabled()
+{
+	bool commoncontrols = false;
+
+	// Test if application has access to common controls
+	HMODULE hinstDll = ::LoadLibrary(_T("comctl32.dll"));
+	if (hinstDll)
+	{
+		DLLGETVERSIONPROC pDllGetVersion = (DLLGETVERSIONPROC)::GetProcAddress(hinstDll, "DllGetVersion");
+		if (pDllGetVersion)
+		{
+			DLLVERSIONINFO dvi = { 0 };
+			dvi.cbSize = sizeof(dvi);
+			HRESULT hRes = pDllGetVersion((DLLVERSIONINFO *)&dvi);
+			if (SUCCEEDED(hRes))
+				commoncontrols = dvi.dwMajorVersion >= 6;
+		}
+		::FreeLibrary(hinstDll);
+	}
+	return commoncontrols;
+}

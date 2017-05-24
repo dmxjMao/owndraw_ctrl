@@ -28,5 +28,4 @@ public:
 	afx_msg void OnLvnEndlabeledit(NMHDR *pNMHDR, LRESULT *pResult);
 	afx_msg void MeasureItem(/*int nIDCtl, */LPMEASUREITEMSTRUCT lpMeasureItemStruct);
 	afx_msg void OnHdnTrack(NMHDR *pNMHDR, LRESULT *pResult);
-	afx_msg void OnHdnEndtrack(NMHDR *pNMHDR, LRESULT *pResult);
 };
