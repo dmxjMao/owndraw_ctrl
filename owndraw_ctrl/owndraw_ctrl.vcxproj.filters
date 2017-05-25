@@ -125,5 +125,8 @@
     <Image Include="res\listctrl1_bmp.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\listctrl1_small.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

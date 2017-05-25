@@ -224,6 +224,7 @@
     <Image Include="res\close_24px_1175741_easyicon.net.bmp" />
     <Image Include="res\icon1.ico" />
     <Image Include="res\listctrl1_bmp.bmp" />
+    <Image Include="res\listctrl1_small.bmp" />
     <Image Include="res\owndraw_ctrl.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
