@@ -25,6 +25,9 @@
     <Filter Include="OwnDrawCtrl\CListCtrl">
       <UniqueIdentifier>{11b4001a-8c3e-475f-9c41-2db8112fada1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="OwnDrawCtrl\CHeaderCtrl">
+      <UniqueIdentifier>{dc84b0fe-b2cd-4d85-af8d-a9294cdd957f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
