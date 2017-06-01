@@ -63,6 +63,7 @@ void Cowndraw_ctrlDlg::DoDataExchange(CDataExchange* pDX)
 	CDialogEx::DoDataExchange(pDX);
 	DDX_Control(pDX, IDC_STATIC_1, m_static1);
 	DDX_Control(pDX, IDC_LIST1, m_list1);
+	DDX_Control(pDX, IDC_TREE1, m_tree1);
 }
 
 BEGIN_MESSAGE_MAP(Cowndraw_ctrlDlg, CDialogEx)
@@ -116,7 +117,7 @@ BOOL Cowndraw_ctrlDlg::OnInitDialog()
 	SetIcon(m_hIcon, FALSE);		// Set small icon
 
 	// TODO: Add extra initialization here
-	SetWindowPos(NULL, 0, 0, DLG_SIZE_CX, DLG_SIZE_CY, SWP_NOZORDER | SWP_NOMOVE);
+	//SetWindowPos(NULL, 0, 0, DLG_SIZE_CX, DLG_SIZE_CY, SWP_NOZORDER | SWP_NOMOVE);
 	RECT rcClient;
 	GetClientRect(&rcClient);
 	DLG_CLIENT_X = rcClient.right - rcClient.left;
@@ -184,16 +185,16 @@ HCURSOR Cowndraw_ctrlDlg::OnQueryDragIcon()
 void Cowndraw_ctrlDlg::LayoutMainDlg(/*CConfig* 配置信息*/)
 {	
 	//控件布局
-	/*标题*/SetCtrlLocAbsolute(IDC_STATIC_1, 0, 0, ID_MY_STATIC_WIDTH, ID_MY_STATIC_HEIGHT);
-	/*cancel按钮*/SetCtrlLocRelativeDlg(IDCANCEL, RELATIVE_LOC::RIGHT_BOTTOM, 10, 10);
-	/*ok按钮*/SetCtrlLocRelativeCtrl(IDOK, IDCANCEL, RELATIVE_LOC::LEFT_TOP, 10, 0);
+	/*标题*///SetCtrlLocAbsolute(IDC_STATIC_1, 0, 0, ID_MY_STATIC_WIDTH, ID_MY_STATIC_HEIGHT);
+	/*cancel按钮*///SetCtrlLocRelativeDlg(IDCANCEL, RELATIVE_LOC::RIGHT_BOTTOM, 10, 10);
+	/*ok按钮*///SetCtrlLocRelativeCtrl(IDOK, IDCANCEL, RELATIVE_LOC::LEFT_TOP, 10, 0);
 	
 	/*关闭按钮*/
 	m_test1.AutoLoad(ID_MYCTRL_TEST1, this);
 	SetCtrlLocRelativeDlg(ID_MYCTRL_TEST1, RELATIVE_LOC::LEFT_BOTTOM, 30, 30);
 
 	/*listctrl*/
-	SetCtrlLocAbsolute(IDC_LIST1, 10, 100, DLG_CLIENT_X - 20, 250);
+	//SetCtrlLocAbsolute(IDC_LIST1, 10, 100, DLG_CLIENT_X - 20, 250);
 
 	//控件自定义属性
 	m_static1 & "textpoint,15"  & "textpoint,13" & "textcolor-RGB(0,255,0)";
@@ -201,6 +202,9 @@ void Cowndraw_ctrlDlg::LayoutMainDlg(/*CConfig* 配置信息*/)
 
 	//控件默认ui属性，改为PreCreateWindow
 	m_list1.Init();
+
+	//树控件
+	m_tree1.Init();	
 }
 
 
@@ -276,3 +280,6 @@ void Cowndraw_ctrlDlg::PreSubclassWindow()
 
 	CDialogEx::PreSubclassWindow();
 }
+
+
+//template class ITCExpand<CMyTreeCtrl>;//控制实例化

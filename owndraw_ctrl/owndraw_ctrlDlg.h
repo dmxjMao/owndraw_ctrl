@@ -8,6 +8,7 @@
 #include "sts_test1.h"
 #include "btn_test1.h"
 #include "listctrl_test1.h"
+#include "MyTreeCtrl.h"
 
 class COwnDrawCtrl_CStatic_Text1;
 
@@ -52,6 +53,8 @@ protected:
 	CMyStatic1			m_static1;
 	CMyBitmapButton		m_test1;
 	CMyListCtrl1		m_list1;
+	//ITCExpand<CMyTreeCtrl>			m_tree1;
+	CMyTreeCtrl			m_tree1;
 
 public:
 	afx_msg void OnMouseMove(UINT nFlags, CPoint point);

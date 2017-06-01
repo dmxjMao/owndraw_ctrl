@@ -25,6 +25,9 @@
     <Filter Include="OwnDrawCtrl\CListCtrl">
       <UniqueIdentifier>{11b4001a-8c3e-475f-9c41-2db8112fada1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="OwnDrawCtrl\CTreeCtrl">
+      <UniqueIdentifier>{fda36285-03b4-4c16-997e-052122d1f4bb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -63,6 +66,9 @@
     <ClInclude Include="listctrl_test1.h">
       <Filter>OwnDrawCtrl\CListCtrl</Filter>
     </ClInclude>
+    <ClInclude Include="MyTreeCtrl.h">
+      <Filter>OwnDrawCtrl\CTreeCtrl</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="owndraw_ctrl.cpp">
@@ -88,6 +94,9 @@
     </ClCompile>
     <ClCompile Include="listctrl_test1.cpp">
       <Filter>OwnDrawCtrl\CListCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="MyTreeCtrl.cpp">
+      <Filter>OwnDrawCtrl\CTreeCtrl</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
