@@ -64,4 +64,5 @@ public:
 
 	virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
 	virtual void PreSubclassWindow();
+	afx_msg void OnBnClickedBtntabctrl();
 };

@@ -8,7 +8,7 @@
 #include "afxdialogex.h"
 #include "ctl_property.h"
 #include "ctl_adjust.h"
-
+#include "TabCtrlDlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -74,6 +74,7 @@ BEGIN_MESSAGE_MAP(Cowndraw_ctrlDlg, CDialogEx)
 	ON_WM_LBUTTONDOWN()
 	ON_WM_LBUTTONUP()
 	ON_WM_ERASEBKGND()
+	ON_BN_CLICKED(IDC_BtnTabCtrl, &Cowndraw_ctrlDlg::OnBnClickedBtntabctrl)
 END_MESSAGE_MAP()
 
 
@@ -283,3 +284,10 @@ void Cowndraw_ctrlDlg::PreSubclassWindow()
 
 
 //template class ITCExpand<CMyTreeCtrl>;//¿ØÖÆÊµÀý»¯
+
+void Cowndraw_ctrlDlg::OnBnClickedBtntabctrl()
+{
+	// TODO: Add your control notification handler code here
+	CTabCtrlDlg dlg;
+	dlg.DoModal();
+}
