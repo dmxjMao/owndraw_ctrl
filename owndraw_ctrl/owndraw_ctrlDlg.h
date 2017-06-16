@@ -32,6 +32,7 @@ protected:
 // Implementation
 protected:
 	HICON m_hIcon;
+	CToolTipCtrl m_tip;
 
 	LONG				DLG_CLIENT_X;//当前客户区大小
 	LONG				DLG_CLIENT_Y;
@@ -65,4 +66,7 @@ public:
 	virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
 	virtual void PreSubclassWindow();
 	afx_msg void OnBnClickedBtntabctrl();
+	virtual BOOL PreTranslateMessage(MSG* pMsg);
+
+	afx_msg BOOL OnTTNGetDispInfo(UINT id, NMHDR* pNMHDR, LRESULT* pResult);
 };

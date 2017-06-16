@@ -75,6 +75,7 @@ BEGIN_MESSAGE_MAP(Cowndraw_ctrlDlg, CDialogEx)
 	ON_WM_LBUTTONUP()
 	ON_WM_ERASEBKGND()
 	ON_BN_CLICKED(IDC_BtnTabCtrl, &Cowndraw_ctrlDlg::OnBnClickedBtntabctrl)
+	ON_NOTIFY_EX(TTN_GETDISPINFO, IDD_OWNDRAW_CTRL_DIALOG, &OnTTNGetDispInfo)
 END_MESSAGE_MAP()
 
 
@@ -124,6 +125,14 @@ BOOL Cowndraw_ctrlDlg::OnInitDialog()
 	DLG_CLIENT_X = rcClient.right - rcClient.left;
 	DLG_CLIENT_Y  = rcClient.bottom - rcClient.top;
 
+	//tooltip
+	if (m_tip.Create(this, TTS_ALWAYSTIP | TTS_BALLOON)) {
+		m_tip.AddTool(this, _T("This is a very long string.\nhello,world!"), &rcClient, IDD_OWNDRAW_CTRL_DIALOG);
+		m_tip.SetMaxTipWidth(150);
+		//CToolInfo ti;
+		//m_tip.GetToolInfo(ti, this);
+	}
+	
 	//²¼¾Ö¿Ø¼þ
 	LayoutMainDlg();
 
@@ -290,4 +299,21 @@ void Cowndraw_ctrlDlg::OnBnClickedBtntabctrl()
 	// TODO: Add your control notification handler code here
 	CTabCtrlDlg dlg;
 	dlg.DoModal();
+}
+
+
+BOOL Cowndraw_ctrlDlg::PreTranslateMessage(MSG* pMsg)
+{
+	// TODO: Add your specialized code here and/or call the base class
+	m_tip.RelayEvent(pMsg);
+	return CDialogEx::PreTranslateMessage(pMsg);
+}
+
+
+BOOL Cowndraw_ctrlDlg::OnTTNGetDispInfo(UINT id, NMHDR* pNMHDR, LRESULT* pResult)
+{
+	LPNMTTDISPINFO pInfo = (LPNMTTDISPINFO)pNMHDR;
+	m_tip.SetMaxTipWidth(150);
+	_tcscpy_s(pInfo->szText, 79, _T("This is \n a very long text string that must be broken into several lines."));
+	return TRUE;
 }

@@ -15,15 +15,36 @@ public:
 
 protected:
 	DECLARE_MESSAGE_MAP()
+	
+	virtual bool	DoInsertRoot(HTREEITEM);
+	virtual bool	DoInsertSibling(HTREEITEM);
+	virtual bool	DoInsertChild(HTREEITEM);
+	virtual bool	DoDeleteItem(HTREEITEM);
 
+	//
+	virtual bool	NewItem(TVINSERTSTRUCT & ins);
+	virtual bool	HandleKeyDown(WPARAM wParam, LPARAM lParam);
 private:
 	void ExpandItem(HTREEITEM hti = TVI_ROOT, UINT nCode = TVE_EXPAND);
 
 public:
 protected:
+	typedef bool (CMyTreeCtrl::*method)(HTREEITEM);
+	typedef std::map<UINT, method>				cmdmap_t;
+	cmdmap_t	m_Commandmap;//ÓÒ¼ü²Ëµ¥
+	typedef std::map<bool, method>				shiftmap_t;
+	typedef std::map<bool, shiftmap_t>			ctrlmap_t;
+	typedef std::map<int, ctrlmap_t>			keymap_t;
+	keymap_t	m_Keymap;//¿ì½Ý¼ü
+
 private:
 
 	virtual void PreSubclassWindow();
+public:
+	afx_msg void OnNMRClick(NMHDR *pNMHDR, LRESULT *pResult);
+	afx_msg void OnTvnEndlabeledit(NMHDR *pNMHDR, LRESULT *pResult);
+	afx_msg void OnContextCmd(UINT uID);
+	virtual BOOL PreTranslateMessage(MSG* pMsg);
 };
 
 
