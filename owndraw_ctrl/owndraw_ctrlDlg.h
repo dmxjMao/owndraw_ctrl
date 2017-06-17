@@ -33,6 +33,8 @@ protected:
 protected:
 	HICON m_hIcon;
 	CToolTipCtrl m_tip;
+	CMFCToolBar m_tb;
+	CMenu m_tbmu;
 
 	LONG				DLG_CLIENT_X;//当前客户区大小
 	LONG				DLG_CLIENT_Y;
@@ -69,4 +71,5 @@ public:
 	virtual BOOL PreTranslateMessage(MSG* pMsg);
 
 	afx_msg BOOL OnTTNGetDispInfo(UINT id, NMHDR* pNMHDR, LRESULT* pResult);
+	afx_msg void OnTbintRange();
 };

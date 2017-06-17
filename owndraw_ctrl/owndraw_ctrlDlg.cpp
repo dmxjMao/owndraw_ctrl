@@ -14,6 +14,7 @@
 #define new DEBUG_NEW
 #endif
 
+#define ID_tbInt 100
 
 // CAboutDlg dialog used for App About
 
@@ -76,6 +77,7 @@ BEGIN_MESSAGE_MAP(Cowndraw_ctrlDlg, CDialogEx)
 	ON_WM_ERASEBKGND()
 	ON_BN_CLICKED(IDC_BtnTabCtrl, &Cowndraw_ctrlDlg::OnBnClickedBtntabctrl)
 	ON_NOTIFY_EX(TTN_GETDISPINFO, IDD_OWNDRAW_CTRL_DIALOG, &OnTTNGetDispInfo)
+	//ON_COMMAND(ID_tbInt_Range, &Cowndraw_ctrlDlg::OnTbintRange)
 END_MESSAGE_MAP()
 
 
@@ -132,7 +134,41 @@ BOOL Cowndraw_ctrlDlg::OnInitDialog()
 		//CToolInfo ti;
 		//m_tip.GetToolInfo(ti, this);
 	}
-	
+	//toolbar
+	int l, t;
+	BOOL bRet = m_tb.Create(this, WS_CHILD | WS_VISIBLE | TBSTYLE_TOOLTIPS | TBSTYLE_TRANSPARENT, ID_tbInt);
+	UINT btns[] = { IDM_intRange , IDM_intRegular, IDM_intFix };
+	m_tb.SetButtons(btns, sizeof(btns) / sizeof(btns[0]));
+	m_tb.CleanUpLockedImages();
+	m_tb.LoadBitmap(IDB_tbInt_16px);
+
+	m_tb.SetPaneStyle(m_tb.GetPaneStyle() &~(CBRS_GRIPPER | CBRS_SIZE_DYNAMIC | CBRS_BORDER_ANY));
+	//m_tb.SetOwner(this);
+	//m_tb.SetRouteCommandsViaFrame(FALSE);
+
+	//CMenu mu;
+	//mu.LoadMenu(IDR_test);
+	m_tbmu.CreatePopupMenu();
+	m_tbmu.AppendMenu(MF_STRING, IDM_int1, _T("测试菜单1"));
+
+	//int iImage = GetCmdMgr()->GetCmdImage(IDM_intRange);
+	//构造一个菜单按钮,(UINT)-1的话，点击按钮就下拉
+	CMFCToolBarMenuButton tbmu(IDM_intRange, m_tbmu.GetSafeHmenu(), -1);
+	m_tb.ReplaceButton(IDM_intRange, tbmu);
+	//CMFCToolBarMenuButton* pBtn = (CMFCToolBarMenuButton*)m_tb.GetButton(0);
+	//pBtn->m_bText = FALSE;
+	//pBtn->m_bImage = TRUE;
+	//pBtn->SetImage(GetCmdMgr()->GetCmdImage(IDM_intRange));
+	//pBtn->SetMessageWnd(this);
+	//toolbar布局
+	CRect rc;
+	GetDlgItem(IDC_BtnTabCtrl)->GetWindowRect(&rc);
+	ScreenToClient(&rc);
+	l = rc.left; t = rc.top + rc.Height() + 2;
+	CSize sz = m_tb.CalcFixedLayout(FALSE, TRUE);
+	m_tb.SetWindowPos(0, l, t, sz.cx, sz.cy, SWP_NOACTIVATE | SWP_NOZORDER);
+
+
 	//布局控件
 	LayoutMainDlg();
 
@@ -316,4 +352,11 @@ BOOL Cowndraw_ctrlDlg::OnTTNGetDispInfo(UINT id, NMHDR* pNMHDR, LRESULT* pResult
 	m_tip.SetMaxTipWidth(150);
 	_tcscpy_s(pInfo->szText, 79, _T("This is \n a very long text string that must be broken into several lines."));
 	return TRUE;
+}
+
+//工具条响应
+void Cowndraw_ctrlDlg::OnTbintRange()
+{
+	// TODO: Add your command handler code here
+	AfxMessageBox(_T("hello"));
 }

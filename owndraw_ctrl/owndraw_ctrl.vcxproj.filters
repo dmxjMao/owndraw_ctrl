@@ -155,5 +155,17 @@
     <Image Include="res\listctrl1_small.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\toolbar1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\toolbar2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\整数工具条.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\整数工具条_16px.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

@@ -91,11 +91,11 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>E:\maoyinan\prj\boost_1_63_0</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\dmxjMao\Documents\PRJ\boost_1_63_0</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <AdditionalLibraryDirectories>E:\maoyinan\prj\boost_1_63_0\stage\lib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\dmxjMao\Documents\PRJ\boost_1_63_0\stage\lib</AdditionalLibraryDirectories>
     </Link>
     <Midl>
       <MkTypLibCompatible>false</MkTypLibCompatible>
@@ -232,6 +232,10 @@
     <Image Include="res\listctrl1_bmp.bmp" />
     <Image Include="res\listctrl1_small.bmp" />
     <Image Include="res\owndraw_ctrl.ico" />
+    <Image Include="res\toolbar1.bmp" />
+    <Image Include="res\toolbar2.bmp" />
+    <Image Include="res\整数工具条.bmp" />
+    <Image Include="res\整数工具条_16px.bmp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
