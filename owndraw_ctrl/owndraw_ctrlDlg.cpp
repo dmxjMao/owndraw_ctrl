@@ -164,10 +164,16 @@ BOOL Cowndraw_ctrlDlg::OnInitDialog()
 	CRect rc;
 	GetDlgItem(IDC_BtnTabCtrl)->GetWindowRect(&rc);
 	ScreenToClient(&rc);
-	l = rc.left; t = rc.top + rc.Height() + 2;
+	l = rc.left; t = rc.bottom + 2;
 	CSize sz = m_tb.CalcFixedLayout(FALSE, TRUE);
 	m_tb.SetWindowPos(0, l, t, sz.cx, sz.cy, SWP_NOACTIVATE | SWP_NOZORDER);
 
+	m_sts2.SetType(MYSTATIC_2);
+	rc.SetRectEmpty();
+	bRet = m_sts2.Create(0, WS_CHILD | WS_VISIBLE | SS_OWNERDRAW, rc, this);
+	t += 50;
+	m_sts2.SetWindowPos(0, l, t, 200, 50, SWP_NOZORDER | SWP_NOACTIVATE);
+	m_sts2.ShowWindow(SW_NORMAL);
 
 	//²¼¾Ö¿Ø¼þ
 	LayoutMainDlg();

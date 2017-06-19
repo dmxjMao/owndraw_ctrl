@@ -8,7 +8,8 @@
 bool				g_bMouseTrack = true;//鼠标悬停控制
 COLORREF			g_color;//颜色变量
 
-CMyStatic1::CMyStatic1()
+CMyStatic1::CMyStatic1(MYSTATIC_TYPE t)
+	: m_type(t)
 {
 	try {
 		//ui属性正则
@@ -64,15 +65,34 @@ void CMyStatic1::OnPaint()
 	CPaintDC dc(this); // device context for painting
 					   // TODO: Add your message handler code here
 					   // Do not call CStatic::OnPaint() for painting messages
-	RECT rc;
+	CRect rc;
 	GetClientRect(&rc);
-	dc.FillSolidRect(&rc, m_colorCtrlBG);
+	if (MYSTATIC_1 == m_type) {	
+		dc.FillSolidRect(&rc, m_colorCtrlBG);
 
-	dc.SetBkMode(TRANSPARENT);
-	dc.SelectObject(m_font);
-	//SetWindowText(_T("报警123"));
-	dc.SetTextColor(m_colorText);
-	dc.DrawText(_T(" 这是个标题"),&rc, DT_SINGLELINE|DT_VCENTER);
+		dc.SetBkMode(TRANSPARENT);
+		dc.SelectObject(m_font);
+		//SetWindowText(_T("报警123"));
+		dc.SetTextColor(m_colorText);
+		dc.DrawText(_T(" 这是个标题"), &rc, DT_SINGLELINE | DT_VCENTER);
+	}
+	else if (MYSTATIC_2 == m_type) {
+		CBitmap bm;
+		bm.CreateCompatibleBitmap(&dc, 100, 30);
+		CDC memdc;
+		memdc.CreateCompatibleDC(&dc);
+		memdc.SelectObject(bm);
+
+		/*IMAGEINFO ii;
+		m_il.GetImageInfo(0, &ii);
+		CBitmap bmPic;
+		bmPic.Attach(ii.hbmImage);*/
+		//memdc.SelectObject(bmPic);
+
+		memdc.TextOut(33, 0, _T("未生成"));
+		BitBlt(dc, 0, 0, rc.Width(), rc.Height(), memdc, 0, 0, SRCCOPY);
+	}
+	
 
 	//if (!m_test1.GetSafeHwnd()) {
 	//	m_test1.Create(_T(""), WS_CHILD | WS_VISIBLE | BS_OWNERDRAW,
@@ -208,6 +228,12 @@ void CMyStatic1::PreSubclassWindow()
 	m_colorCtrlBG = COLOR_LIGHT_BLUE;//控件背景色
 	m_colorText = COLOR_WHITE;//文字颜色
 	m_colorHightLight = COLOR_RED;//高亮文本颜色
+
+	m_il.Create(32, 32, ILC_COLOR24, 10, 1);  //用这种方法指定颜色位数！
+	CBitmap bmp;
+	bmp.LoadBitmap(IDB_listctrl1);
+	m_il.Add(&bmp, RGB(0, 0, 0));
+
 
 	__super::PreSubclassWindow();
 }
