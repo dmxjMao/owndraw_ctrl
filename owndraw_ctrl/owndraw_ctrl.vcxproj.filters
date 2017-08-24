@@ -81,6 +81,12 @@
     <ClInclude Include="MyTabCtrl.h">
       <Filter>OwnDrawCtrl\CTabCtrl</Filter>
     </ClInclude>
+    <ClInclude Include="GraphicsDlg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MyStatic2.h">
+      <Filter>OwnDrawCtrl\CStatic</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="owndraw_ctrl.cpp">
@@ -115,6 +121,12 @@
     </ClCompile>
     <ClCompile Include="MyTabCtrl.cpp">
       <Filter>OwnDrawCtrl\CTabCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="GraphicsDlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MyStatic2.cpp">
+      <Filter>OwnDrawCtrl\CStatic</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

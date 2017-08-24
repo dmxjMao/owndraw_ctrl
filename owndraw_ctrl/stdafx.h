@@ -53,3 +53,7 @@
 
 //#include <bitset>
 #include <boost\regex.hpp>
+
+#include <gdiplus.h>
+#pragma comment(lib,"Gdiplus.lib")
+using namespace Gdiplus;

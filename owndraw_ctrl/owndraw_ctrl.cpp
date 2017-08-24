@@ -11,6 +11,7 @@
 #endif
 
 
+
 // Cowndraw_ctrlApp
 
 BEGIN_MESSAGE_MAP(Cowndraw_ctrlApp, CWinApp)
@@ -31,6 +32,8 @@ Cowndraw_ctrlApp::Cowndraw_ctrlApp()
 
 Cowndraw_ctrlApp theApp;
 
+ULONG_PTR gdiplusToken;
+GdiplusStartupInput gdiplusStartupInput;
 
 // Cowndraw_ctrlApp initialization
 
@@ -48,6 +51,7 @@ BOOL Cowndraw_ctrlApp::InitInstance()
 
 	CWinApp::InitInstance();
 
+	GdiplusStartup(&gdiplusToken, &gdiplusStartupInput, NULL);
 
 	// Create the shell manager, in case the dialog contains
 	// any shell tree view or shell list view controls.
@@ -96,6 +100,15 @@ BOOL Cowndraw_ctrlApp::InitInstance()
 
 	// Since the dialog has been closed, return FALSE so that we exit the
 	//  application, rather than start the application's message pump.
+	
 	return FALSE;
 }
 
+
+
+int Cowndraw_ctrlApp::ExitInstance()
+{
+	// TODO: Add your specialized code here and/or call the base class
+	GdiplusShutdown(gdiplusToken);
+	return CWinApp::ExitInstance();
+}

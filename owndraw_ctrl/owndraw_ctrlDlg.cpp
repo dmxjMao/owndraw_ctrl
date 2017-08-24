@@ -9,6 +9,7 @@
 #include "ctl_property.h"
 #include "ctl_adjust.h"
 #include "TabCtrlDlg.h"
+#include "GraphicsDlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -34,6 +35,8 @@ public:
 // Implementation
 protected:
 	DECLARE_MESSAGE_MAP()
+public:
+	virtual BOOL OnInitDialog();
 };
 
 CAboutDlg::CAboutDlg() : CDialogEx(IDD_ABOUTBOX)
@@ -78,6 +81,7 @@ BEGIN_MESSAGE_MAP(Cowndraw_ctrlDlg, CDialogEx)
 	ON_BN_CLICKED(IDC_BtnTabCtrl, &Cowndraw_ctrlDlg::OnBnClickedBtntabctrl)
 	ON_NOTIFY_EX(TTN_GETDISPINFO, IDD_OWNDRAW_CTRL_DIALOG, &OnTTNGetDispInfo)
 	//ON_COMMAND(ID_tbInt_Range, &Cowndraw_ctrlDlg::OnTbintRange)
+	ON_BN_CLICKED(IDC_btn_Graphics, &Cowndraw_ctrlDlg::OnBnClickedbtnGraphics)
 END_MESSAGE_MAP()
 
 
@@ -146,8 +150,6 @@ BOOL Cowndraw_ctrlDlg::OnInitDialog()
 	//m_tb.SetOwner(this);
 	//m_tb.SetRouteCommandsViaFrame(FALSE);
 
-	//CMenu mu;
-	//mu.LoadMenu(IDR_test);
 	m_tbmu.CreatePopupMenu();
 	m_tbmu.AppendMenu(MF_STRING, IDM_int1, _T("测试菜单1"));
 
@@ -155,11 +157,7 @@ BOOL Cowndraw_ctrlDlg::OnInitDialog()
 	//构造一个菜单按钮,(UINT)-1的话，点击按钮就下拉
 	CMFCToolBarMenuButton tbmu(IDM_intRange, m_tbmu.GetSafeHmenu(), -1);
 	m_tb.ReplaceButton(IDM_intRange, tbmu);
-	//CMFCToolBarMenuButton* pBtn = (CMFCToolBarMenuButton*)m_tb.GetButton(0);
-	//pBtn->m_bText = FALSE;
-	//pBtn->m_bImage = TRUE;
-	//pBtn->SetImage(GetCmdMgr()->GetCmdImage(IDM_intRange));
-	//pBtn->SetMessageWnd(this);
+
 	//toolbar布局
 	CRect rc;
 	GetDlgItem(IDC_BtnTabCtrl)->GetWindowRect(&rc);
@@ -168,17 +166,17 @@ BOOL Cowndraw_ctrlDlg::OnInitDialog()
 	CSize sz = m_tb.CalcFixedLayout(FALSE, TRUE);
 	m_tb.SetWindowPos(0, l, t, sz.cx, sz.cy, SWP_NOACTIVATE | SWP_NOZORDER);
 
-	m_sts2.SetType(MYSTATIC_2);
-	rc.SetRectEmpty();
-	bRet = m_sts2.Create(0, WS_CHILD | WS_VISIBLE | SS_OWNERDRAW, rc, this);
-	t += 50;
-	m_sts2.SetWindowPos(0, l, t, 200, 50, SWP_NOZORDER | SWP_NOACTIVATE);
-	m_sts2.ShowWindow(SW_NORMAL);
+	//m_sts2.SetType(MYSTATIC_2);
+	//rc.SetRectEmpty();
+	//bRet = m_sts2.Create(0, WS_CHILD | WS_VISIBLE | SS_OWNERDRAW, rc, this);
+	//t += 50;
+	//m_sts2.SetWindowPos(0, l, t, 200, 50, SWP_NOZORDER | SWP_NOACTIVATE);
+	//m_sts2.ShowWindow(SW_NORMAL);
 
 	//布局控件
 	LayoutMainDlg();
 
-
+	
 	return TRUE;  // return TRUE  unless you set the focus to a control
 }
 
@@ -365,4 +363,24 @@ void Cowndraw_ctrlDlg::OnTbintRange()
 {
 	// TODO: Add your command handler code here
 	AfxMessageBox(_T("hello"));
+}
+
+
+void Cowndraw_ctrlDlg::OnBnClickedbtnGraphics()
+{
+	// TODO: Add your control notification handler code here
+	CGraphicsDlg dlg;
+	dlg.DoModal();
+}
+
+
+BOOL CAboutDlg::OnInitDialog()
+{
+	CDialogEx::OnInitDialog();
+
+	// TODO:  Add extra initialization here
+
+
+	return TRUE;  // return TRUE unless you set the focus to a control
+				  // EXCEPTION: OCX Property Pages should return FALSE
 }
