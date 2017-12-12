@@ -87,6 +87,9 @@
     <ClInclude Include="MyStatic2.h">
       <Filter>OwnDrawCtrl\CStatic</Filter>
     </ClInclude>
+    <ClInclude Include="MyListCtrl2.h">
+      <Filter>OwnDrawCtrl\CListCtrl</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="owndraw_ctrl.cpp">
@@ -127,6 +130,9 @@
     </ClCompile>
     <ClCompile Include="MyStatic2.cpp">
       <Filter>OwnDrawCtrl\CStatic</Filter>
+    </ClCompile>
+    <ClCompile Include="MyListCtrl2.cpp">
+      <Filter>OwnDrawCtrl\CListCtrl</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

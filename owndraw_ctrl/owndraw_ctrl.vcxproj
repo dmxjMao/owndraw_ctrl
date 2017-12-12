@@ -91,11 +91,11 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Users\dmxjMao\Documents\PRJ\boost_1_63_0</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\boost_1_63_0</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <AdditionalLibraryDirectories>C:\Users\dmxjMao\Documents\PRJ\boost_1_63_0\stage\lib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\boost_1_63_0\stage\lib</AdditionalLibraryDirectories>
     </Link>
     <Midl>
       <MkTypLibCompatible>false</MkTypLibCompatible>
@@ -114,9 +114,11 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_WINDOWS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\boost_1_63_0\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
+      <AdditionalDependencies>$(SolutionDir)..\boost_1_63_0\stage\lib</AdditionalDependencies>
     </Link>
     <Midl>
       <MkTypLibCompatible>false</MkTypLibCompatible>
@@ -188,6 +190,7 @@
     <ClInclude Include="ctl_property.h" />
     <ClInclude Include="GraphicsDlg.h" />
     <ClInclude Include="listctrl_test1.h" />
+    <ClInclude Include="MyListCtrl2.h" />
     <ClInclude Include="MyStatic2.h" />
     <ClInclude Include="MyTabCtrl.h" />
     <ClInclude Include="MyTreeCtrl.h" />
@@ -205,6 +208,7 @@
     <ClCompile Include="ctl_adjust.cpp" />
     <ClCompile Include="GraphicsDlg.cpp" />
     <ClCompile Include="listctrl_test1.cpp" />
+    <ClCompile Include="MyListCtrl2.cpp" />
     <ClCompile Include="MyStatic2.cpp" />
     <ClCompile Include="MyTabCtrl.cpp" />
     <ClCompile Include="MyTreeCtrl.cpp" />

@@ -11,11 +11,17 @@
 #include "TabCtrlDlg.h"
 #include "GraphicsDlg.h"
 
+#include "MyListCtrl2.h"
+
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
 
 #define ID_tbInt 100
+
+using std::make_shared;
+using std::shared_ptr;
+
 
 // CAboutDlg dialog used for App About
 
@@ -176,6 +182,10 @@ BOOL Cowndraw_ctrlDlg::OnInitDialog()
 	//布局控件
 	LayoutMainDlg();
 
+	//if (0 == m_list2) {
+	//	m_list2 = make_shared<CMyListCtrl2>();
+	//	m_list2->Create(WS_CHILD | WS_VISIBLE | LVS_REPORT, CRect(0, 0, 0, 0), this, 1);
+	//}
 	
 	return TRUE;  // return TRUE  unless you set the focus to a control
 }
@@ -247,7 +257,7 @@ void Cowndraw_ctrlDlg::LayoutMainDlg(/*CConfig* 配置信息*/)
 	//SetCtrlLocAbsolute(IDC_LIST1, 10, 100, DLG_CLIENT_X - 20, 250);
 
 	//控件自定义属性
-	m_static1 & "textpoint,15"  & "textpoint,13" & "textcolor-RGB(0,255,0)";
+	m_static1 & "textpoint:15"  & "textpoint,13" & "textcolor-RGB(0,255,0)";
 	//m_test1 & "ctrlbgcolor,RGB(49,113,170)";
 
 	//控件默认ui属性，改为PreCreateWindow

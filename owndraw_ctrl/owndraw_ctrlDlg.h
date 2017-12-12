@@ -11,6 +11,8 @@
 #include "MyTreeCtrl.h"
 
 
+class CMyListCtrl2;
+
 // Cowndraw_ctrlDlg dialog
 class Cowndraw_ctrlDlg : public CDialogEx
 {
@@ -58,6 +60,7 @@ protected:
 	//ITCExpand<CMyTreeCtrl>			m_tree1;
 	CMyTreeCtrl			m_tree1;
 	CMyStatic1 m_sts2;
+	std::shared_ptr<CMyListCtrl2> m_list2 = 0;
 
 public:
 	afx_msg void OnMouseMove(UINT nFlags, CPoint point);

@@ -50,6 +50,11 @@
 #endif
 #endif
 
+#include <string>
+#include <vector>
+#include <memory>
+#include <algorithm>
+#include <map>
 
 //#include <bitset>
 #include <boost\regex.hpp>
