@@ -189,6 +189,7 @@
     <ClInclude Include="ctl_adjust.h" />
     <ClInclude Include="ctl_property.h" />
     <ClInclude Include="GraphicsDlg.h" />
+    <ClInclude Include="ListCtrlDlg.h" />
     <ClInclude Include="listctrl_test1.h" />
     <ClInclude Include="MyListCtrl2.h" />
     <ClInclude Include="MyStatic2.h" />
@@ -207,6 +208,7 @@
     <ClCompile Include="btn_test1.cpp" />
     <ClCompile Include="ctl_adjust.cpp" />
     <ClCompile Include="GraphicsDlg.cpp" />
+    <ClCompile Include="ListCtrlDlg.cpp" />
     <ClCompile Include="listctrl_test1.cpp" />
     <ClCompile Include="MyListCtrl2.cpp" />
     <ClCompile Include="MyStatic2.cpp" />

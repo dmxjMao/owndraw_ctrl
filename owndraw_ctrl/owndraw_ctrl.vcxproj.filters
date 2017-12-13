@@ -90,6 +90,9 @@
     <ClInclude Include="MyListCtrl2.h">
       <Filter>OwnDrawCtrl\CListCtrl</Filter>
     </ClInclude>
+    <ClInclude Include="ListCtrlDlg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="owndraw_ctrl.cpp">
@@ -133,6 +136,9 @@
     </ClCompile>
     <ClCompile Include="MyListCtrl2.cpp">
       <Filter>OwnDrawCtrl\CListCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="ListCtrlDlg.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

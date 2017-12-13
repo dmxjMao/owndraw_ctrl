@@ -76,4 +76,5 @@ public:
 	afx_msg BOOL OnTTNGetDispInfo(UINT id, NMHDR* pNMHDR, LRESULT* pResult);
 	afx_msg void OnTbintRange();
 	afx_msg void OnBnClickedbtnGraphics();
+	afx_msg void OnBnClickedButton1();
 };

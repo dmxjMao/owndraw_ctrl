@@ -12,6 +12,7 @@
 #include "GraphicsDlg.h"
 
 #include "MyListCtrl2.h"
+#include "ListCtrlDlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -88,6 +89,7 @@ BEGIN_MESSAGE_MAP(Cowndraw_ctrlDlg, CDialogEx)
 	ON_NOTIFY_EX(TTN_GETDISPINFO, IDD_OWNDRAW_CTRL_DIALOG, &OnTTNGetDispInfo)
 	//ON_COMMAND(ID_tbInt_Range, &Cowndraw_ctrlDlg::OnTbintRange)
 	ON_BN_CLICKED(IDC_btn_Graphics, &Cowndraw_ctrlDlg::OnBnClickedbtnGraphics)
+	ON_BN_CLICKED(IDC_BUTTON1, &Cowndraw_ctrlDlg::OnBnClickedButton1)
 END_MESSAGE_MAP()
 
 
@@ -393,4 +395,11 @@ BOOL CAboutDlg::OnInitDialog()
 
 	return TRUE;  // return TRUE unless you set the focus to a control
 				  // EXCEPTION: OCX Property Pages should return FALSE
+}
+
+
+void Cowndraw_ctrlDlg::OnBnClickedButton1()
+{
+	CListCtrlDlg dlg;
+	dlg.DoModal();
 }

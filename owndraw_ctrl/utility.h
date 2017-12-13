@@ -9,24 +9,24 @@ struct CListCtrl_DataRecord
 	CListCtrl_DataRecord()
 	{}
 
-	CListCtrl_DataRecord(const string& city, const string& state, const string& country)
+	CListCtrl_DataRecord(const CString& city, const CString& state, const CString& country)
 		:m_City(city)
 		, m_State(state)
 		, m_Country(country)
 	{}
 
-	string	m_City;
-	string	m_State;
-	string	m_Country;
+	CString	m_City;
+	CString	m_State;
+	CString	m_Country;
 
-	const string& GetCellText(int col, bool title) const
+	const CString& GetCellText(int col, bool title) const
 	{
 		switch (col)
 		{
-		case 0: { static string title0("City"); return title ? title0 : m_City; }
-		case 1: { static string title1("State"); return title ? title1 : m_State; }
-		case 2: { static string title2("Country"); return title ? title2 : m_Country; }
-		default: { static string emptyStr; return emptyStr; }
+		case 0: { static CString title0("City"); return title ? title0 : m_City; }
+		case 1: { static CString title1("State"); return title ? title1 : m_State; }
+		case 2: { static CString title2("Country"); return title ? title2 : m_Country; }
+		default: { static CString emptyStr; return emptyStr; }
 		}
 	}
 
@@ -47,17 +47,19 @@ public:
 	void InitDataModel()
 	{
 		m_Records.clear();
-		m_Records.emplace_back("Copenhagen", "Sjaelland", "Denmark");
-		m_Records.emplace_back("Aarhus", "Jutland", "Denmark");
-		m_Records.emplace_back("Odense", "Fyn", "Denmark");
-		m_Records.emplace_back("Malmoe", "Skaane", "Sweeden");
+		m_Records.emplace_back(_T("Copenhagen"), _T("Sjaelland"), _T("Denmark"));
+		m_Records.emplace_back(_T("Aarhus"), _T("Jutland"), _T("Denmark"));
+		m_Records.emplace_back(_T("Odense"), _T("Fyn"), _T("Denmark"));
+		m_Records.emplace_back(_T("Malmoe"), _T("Skaane"), _T("Sweeden"));
+		m_Records.emplace_back(_T("ABCÀ¬»ø£¬¿ÉÒÔ¶ªµôÁË£¬¿ÉÊÇÎÒÏ²»¶°¢£¡°×³Õ£¡"), 
+			_T("À²À²À²À²À²À²À²À²À²À²À²"), _T("Sweeden"));
 	}
 
-	const string& GetCellText(size_t lookupId, int col) const
+	const CString& GetCellText(size_t lookupId, int col) const
 	{
 		if (lookupId >= m_Records.size())
 		{
-			static const string oob("Out of Bound");
+			static const CString oob("Out of Bound");
 			return oob;
 		}
 
@@ -72,7 +74,7 @@ public:
 
 	inline size_t GetRowIds() const { return m_Records.size(); }
 	inline int GetColCount() const { return CListCtrl_DataRecord().GetColCount(); }
-	inline const string& GetColTitle(int col) const { return CListCtrl_DataRecord().GetCellText(col, true); }
+	inline const CString& GetColTitle(int col) const { return CListCtrl_DataRecord().GetCellText(col, true); }
 
 	inline vector<CListCtrl_DataRecord>& GetRecords() { return m_Records; }
 };
